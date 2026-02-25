@@ -1,0 +1,144 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "get_stock_quote",
+      "description": "Get real-time stock price, volume, market cap, and daily price change for a given ticker symbol.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": {
+            "type": "string",
+            "description": "Stock ticker symbol (e.g., AAPL, MSFT, TSLA)"
+          }
+        },
+        "required": ["ticker"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_financial_ratios",
+      "description": "Retrieve fundamental financial ratios for a company including valuation, profitability, and leverage metrics.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": {
+            "type": "string",
+            "description": "Stock ticker symbol"
+          },
+          "ratios": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "List of ratios to retrieve. Options: pe_ratio, pb_ratio, ps_ratio, debt_to_equity, roe, roa, profit_margin, free_cash_flow_yield, dividend_yield, current_ratio"
+          }
+        },
+        "required": ["ticker"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "search_financial_news",
+      "description": "Search recent financial news, analyst reports, and market commentary relevant to a query.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query for financial news (e.g., 'AAPL earnings Q4 2025')"
+          },
+          "days_back": {
+            "type": "integer",
+            "default": 7,
+            "description": "Number of days to look back for news articles"
+          }
+        },
+        "required": ["query"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_market_overview",
+      "description": "Get a snapshot of major market indices (S&P 500, NASDAQ, DJI, Russell 2000), VIX, and sector performance.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "include_sectors": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether to include sector-level performance breakdown"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_treasury_yields",
+      "description": "Get current US Treasury yield curve data across maturities (1M, 3M, 6M, 1Y, 2Y, 5Y, 10Y, 30Y).",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "screen_stocks",
+      "description": "Screen stocks based on fundamental criteria. Returns a list of matching tickers with key metrics.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "sector": {
+            "type": "string",
+            "description": "Sector to screen within (e.g., 'Technology', 'Healthcare', 'Energy')"
+          },
+          "max_pe": {
+            "type": "number",
+            "description": "Maximum P/E ratio filter"
+          },
+          "min_market_cap_b": {
+            "type": "number",
+            "description": "Minimum market cap in billions USD"
+          },
+          "min_dividend_yield": {
+            "type": "number",
+            "description": "Minimum dividend yield percentage"
+          },
+          "max_debt_to_equity": {
+            "type": "number",
+            "description": "Maximum debt-to-equity ratio"
+          }
+        },
+        "required": ["sector"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_economic_indicators",
+      "description": "Retrieve key macroeconomic indicators: CPI, unemployment rate, GDP growth, Fed funds rate, and consumer confidence.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "indicators": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "List of indicators: cpi, unemployment, gdp_growth, fed_funds_rate, consumer_confidence, pmi"
+          }
+        },
+        "required": ["indicators"]
+      }
+    }
+  }
+]

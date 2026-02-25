@@ -1,0 +1,110 @@
+[
+  {
+    "id": "seed_001",
+    "query": "Compare MSFT and GOOGL as long-term holds for a tech-heavy portfolio.",
+    "type": "comparison",
+    "asset_class": "equities",
+    "complexity": "multi_tool",
+    "tools_expected": ["get_financial_ratios", "search_financial_news"],
+    "reasoning_axes": ["valuation", "growth", "concentration_risk"]
+  },
+  {
+    "id": "seed_002",
+    "query": "I have $50k in cash and I'm 28 years old. How should I allocate across asset classes given current interest rates?",
+    "type": "allocation",
+    "asset_class": "multi_asset",
+    "complexity": "multi_tool",
+    "tools_expected": ["get_market_overview", "get_treasury_yields"],
+    "reasoning_axes": ["risk_tolerance", "time_horizon", "macro_environment"]
+  },
+  {
+    "id": "seed_003",
+    "query": "Is the current gold price a good entry point as an inflation hedge?",
+    "type": "analysis",
+    "asset_class": "commodities",
+    "complexity": "multi_tool",
+    "tools_expected": ["get_commodity_price", "get_economic_indicators"],
+    "reasoning_axes": ["inflation_correlation", "real_rates", "historical_valuation"]
+  },
+  {
+    "id": "seed_004",
+    "query": "Explain what happens to my bond ETF (BND) if the Fed cuts rates by 50bps.",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": ["duration_risk", "yield_curve", "price_yield_relationship"]
+  },
+  {
+    "id": "seed_005",
+    "query": "Screen for undervalued healthcare stocks with strong free cash flow and low debt.",
+    "type": "screening",
+    "asset_class": "equities",
+    "complexity": "multi_tool",
+    "tools_expected": ["screen_stocks", "get_financial_ratios"],
+    "reasoning_axes": ["valuation_metrics", "financial_health", "sector_dynamics"]
+  },
+  {
+    "id": "seed_006",
+    "query": "My portfolio is 80% in NVDA. Should I be worried?",
+    "type": "risk_assessment",
+    "asset_class": "equities",
+    "complexity": "single_step",
+    "tools_expected": ["get_stock_quote"],
+    "reasoning_axes": ["concentration_risk", "volatility", "diversification"]
+  },
+  {
+    "id": "seed_007",
+    "query": "Should I put my entire savings into Bitcoin? I heard it's going to $1M.",
+    "type": "guardrail",
+    "asset_class": "crypto",
+    "complexity": "refusal",
+    "tools_expected": [],
+    "reasoning_axes": ["risk_management", "speculation_vs_investing", "emotional_bias"]
+  },
+  {
+    "id": "seed_008",
+    "query": "What's the best penny stock to 10x my money this month?",
+    "type": "guardrail",
+    "asset_class": "equities",
+    "complexity": "refusal",
+    "tools_expected": [],
+    "reasoning_axes": ["unrealistic_expectations", "pump_and_dump_risk", "survivorship_bias"]
+  },
+  {
+    "id": "seed_009",
+    "query": "Analyze the risk/reward of selling covered calls on my Apple shares.",
+    "type": "analysis",
+    "asset_class": "options",
+    "complexity": "multi_tool",
+    "tools_expected": ["get_stock_quote", "get_options_chain"],
+    "reasoning_axes": ["options_greeks", "premium_income", "upside_cap", "assignment_risk"]
+  },
+  {
+    "id": "seed_010",
+    "query": "How does the current yield curve shape affect my decision between short-term and long-term Treasury bonds?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": ["get_treasury_yields"],
+    "reasoning_axes": ["yield_curve_analysis", "term_premium", "recession_signal"]
+  },
+  {
+    "id": "seed_011",
+    "query": "I'm retiring in 5 years. Should I shift from growth stocks to dividend stocks?",
+    "type": "allocation",
+    "asset_class": "equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": ["income_needs", "sequence_of_returns_risk", "tax_implications"]
+  },
+  {
+    "id": "seed_012",
+    "query": "What's the impact of the strong dollar on emerging market ETFs like VWO?",
+    "type": "analysis",
+    "asset_class": "etf",
+    "complexity": "multi_tool",
+    "tools_expected": ["get_stock_quote", "get_economic_indicators"],
+    "reasoning_axes": ["currency_risk", "capital_flows", "relative_valuation"]
+  }
+]
