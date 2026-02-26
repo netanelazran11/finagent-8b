@@ -30,51 +30,6 @@ RAW_DIR = PROJECT_ROOT / "data" / "raw"
 PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
 
 
-def split_parallel_tool_calls(messages: list[dict]) -> list[dict]:
-    """Split parallel tool_calls into sequential single-call messages.
-
-    Llama 3.1's chat template only supports one tool_call per assistant message.
-    If an assistant message has N tool_calls, we split it into N assistant messages,
-    each followed by its corresponding tool response.
-
-    Before:  [assistant(think + 2 tool_calls), tool_1, tool_2, assistant(final)]
-    After:   [assistant(think + tool_call_1), tool_1, assistant(tool_call_2), tool_2, assistant(final)]
-    """
-    result = []
-    # Build a lookup: tool_call_id -> tool response message
-    tool_responses = {}
-    for msg in messages:
-        if msg["role"] == "tool" and "tool_call_id" in msg:
-            tool_responses[msg["tool_call_id"]] = msg
-
-    i = 0
-    while i < len(messages):
-        msg = messages[i]
-
-        if msg.get("tool_calls") and len(msg["tool_calls"]) > 1:
-            # Split: first call keeps the <think> content, rest get empty content
-            for j, tc in enumerate(msg["tool_calls"]):
-                assistant_msg = {
-                    "role": "assistant",
-                    "content": msg.get("content", "") if j == 0 else "",
-                    "tool_calls": [tc],
-                }
-                result.append(assistant_msg)
-                # Insert corresponding tool response right after
-                if tc["id"] in tool_responses:
-                    result.append(tool_responses[tc["id"]])
-
-            # Skip the original tool response messages (we already inserted them)
-            i += 1
-            while i < len(messages) and messages[i]["role"] == "tool":
-                i += 1
-        else:
-            result.append(msg)
-            i += 1
-
-    return result
-
-
 def load_all_examples() -> list[dict]:
     """Load all JSONL files from the raw directory."""
     examples = []
@@ -86,18 +41,6 @@ def load_all_examples() -> list[dict]:
                     examples.append(json.loads(line))
 
     print(f"Loaded {len(examples)} total examples")
-
-    # Split parallel tool_calls for Llama 3.1 compatibility
-    split_count = 0
-    for ex in examples:
-        old_len = len(ex["messages"])
-        ex["messages"] = split_parallel_tool_calls(ex["messages"])
-        if len(ex["messages"]) != old_len:
-            split_count += 1
-
-    if split_count:
-        print(f"Split parallel tool_calls in {split_count} examples")
-
     return examples
 
 
