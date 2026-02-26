@@ -59,6 +59,52 @@ def fix_tool_call_ids(messages: list[dict]) -> list[dict]:
     return messages
 
 
+def fix_tool_messages(messages: list[dict]) -> list[dict]:
+    """Fix tool response messages: add 'name' field from matching tool_call.
+
+    Mistral v0.3 expects tool messages to have a 'name' field with the function name.
+    """
+    # Build lookup: tool_call_id -> function name
+    id_to_name = {}
+    for msg in messages:
+        if msg.get("tool_calls"):
+            for tc in msg["tool_calls"]:
+                id_to_name[tc["id"]] = tc["function"]["name"]
+
+    for msg in messages:
+        if msg["role"] == "tool" and "name" not in msg:
+            tcid = msg.get("tool_call_id", "")
+            if tcid in id_to_name:
+                msg["name"] = id_to_name[tcid]
+
+    return messages
+
+
+def merge_consecutive_assistants(messages: list[dict]) -> list[dict]:
+    """Merge consecutive assistant messages into one.
+
+    Mistral requires strict alternation: user/assistant/user/assistant.
+    Our generated data sometimes has two assistant messages in a row
+    (e.g., a <think> block followed by a final response). Merge them.
+    """
+    result = []
+    for msg in messages:
+        if (result
+                and msg["role"] == "assistant"
+                and result[-1]["role"] == "assistant"
+                and not result[-1].get("tool_calls")):
+            # Merge content into previous assistant message
+            prev_content = result[-1].get("content", "") or ""
+            new_content = msg.get("content", "") or ""
+            result[-1]["content"] = (prev_content + "\n" + new_content).strip()
+            # If the new msg has tool_calls, carry them over
+            if msg.get("tool_calls"):
+                result[-1]["tool_calls"] = msg["tool_calls"]
+        else:
+            result.append(msg)
+    return result
+
+
 def load_all_examples() -> list[dict]:
     """Load all JSONL files from the raw directory."""
     examples = []
@@ -71,16 +117,32 @@ def load_all_examples() -> list[dict]:
 
     print(f"Loaded {len(examples)} total examples")
 
-    # Fix tool_call IDs for Mistral v0.3 compatibility
-    fixed = 0
+    # Fix for Mistral v0.3 compatibility
+    id_fixed = 0
+    merge_fixed = 0
     for ex in examples:
-        for msg in ex["messages"]:
+        msgs = ex["messages"]
+
+        # 1. Fix tool_call IDs (9-char alphanumeric)
+        for msg in msgs:
             if msg.get("tool_calls"):
-                fix_tool_call_ids(ex["messages"])
-                fixed += 1
+                fix_tool_call_ids(msgs)
+                id_fixed += 1
                 break
-    if fixed:
-        print(f"Fixed tool_call IDs in {fixed} examples (Mistral 9-char alphanumeric)")
+
+        # 2. Add 'name' field to tool responses
+        fix_tool_messages(msgs)
+
+        # 3. Merge consecutive assistant messages
+        old_len = len(msgs)
+        ex["messages"] = merge_consecutive_assistants(msgs)
+        if len(ex["messages"]) != old_len:
+            merge_fixed += 1
+
+    if id_fixed:
+        print(f"Fixed tool_call IDs in {id_fixed} examples")
+    if merge_fixed:
+        print(f"Merged consecutive assistants in {merge_fixed} examples")
 
     return examples
 
