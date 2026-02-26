@@ -11,6 +11,6 @@
     "guardrail": 8,
     "tool": 44
   },
-  "avg_messages_per_example": 6.1,
-  "approx_avg_assistant_tokens": 186
+  "avg_messages_per_example": 7.0,
+  "approx_avg_assistant_tokens": 135
 }
