@@ -1,5 +1,43 @@
+# =============================================================================
+# Module 1: Synthetic Data Engineering
+# =============================================================================
 distilabel[openai]>=1.4.0
 openai>=1.12.0
 datasets>=2.16.0
 python-dotenv>=1.0.0
 jsonschema>=4.20.0
+
+# =============================================================================
+# Module 2: QLoRA Fine-Tuning (requires GPU — use Colab/RunPod if no local GPU)
+# =============================================================================
+torch>=2.1.0
+transformers>=4.44.0
+peft>=0.12.0              # LoRA / QLoRA adapter library
+trl>=0.9.0                # SFT, DPO, RLHF trainers
+accelerate>=0.33.0        # Distributed training + mixed precision
+bitsandbytes>=0.43.0      # 4-bit / 8-bit quantization (QLoRA core)
+unsloth[colab-new]>=2024.8  # 2x faster QLoRA training
+wandb>=0.17.0             # Experiment tracking (Weights & Biases)
+
+# =============================================================================
+# Module 3: Agentic Tool-Use
+# =============================================================================
+langgraph>=0.2.0          # Agent orchestration (ReAct loops, state machines)
+langchain>=0.2.0          # LLM chains and tool integration
+langchain-openai>=0.1.0   # OpenAI/Groq provider for LangChain
+langchain-community>=0.2.0
+yfinance>=0.2.40          # Real-time stock data (Yahoo Finance)
+googlesearch-python>=1.2.0  # Google Search tool
+
+# =============================================================================
+# Module 4: Real-Time RAG
+# =============================================================================
+chromadb>=0.5.0           # Vector database for document embeddings
+sentence-transformers>=3.0.0  # Embedding models
+langchain-chroma>=0.1.0   # ChromaDB integration for LangChain
+
+# =============================================================================
+# Module 5: Evaluation & Alignment
+# =============================================================================
+ragas>=0.1.10             # RAG evaluation framework
+rouge-score>=0.1.2        # Text generation evaluation metrics

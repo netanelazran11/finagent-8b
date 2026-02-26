@@ -1,0 +1,5590 @@
+[
+  {
+    "id": "seed_001",
+    "query": "Compare MSFT and GOOGL as long-term holds for a tech-heavy portfolio.",
+    "type": "comparison",
+    "asset_class": "equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_financial_ratios",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "valuation",
+      "growth",
+      "concentration_risk"
+    ]
+  },
+  {
+    "id": "seed_002",
+    "query": "I have $50k in cash and I'm 28 years old. How should I allocate across asset classes given current interest rates?",
+    "type": "allocation",
+    "asset_class": "multi_asset",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_treasury_yields"
+    ],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "time_horizon",
+      "macro_environment"
+    ]
+  },
+  {
+    "id": "seed_003",
+    "query": "Is the current gold price a good entry point as an inflation hedge?",
+    "type": "analysis",
+    "asset_class": "commodities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_commodity_price",
+      "get_economic_indicators"
+    ],
+    "reasoning_axes": [
+      "inflation_correlation",
+      "real_rates",
+      "historical_valuation"
+    ]
+  },
+  {
+    "id": "seed_004",
+    "query": "Explain what happens to my bond ETF (BND) if the Fed cuts rates by 50bps.",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "duration_risk",
+      "yield_curve",
+      "price_yield_relationship"
+    ]
+  },
+  {
+    "id": "seed_005",
+    "query": "Screen for undervalued healthcare stocks with strong free cash flow and low debt.",
+    "type": "screening",
+    "asset_class": "equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "valuation_metrics",
+      "financial_health",
+      "sector_dynamics"
+    ]
+  },
+  {
+    "id": "seed_006",
+    "query": "My portfolio is 80% in NVDA. Should I be worried?",
+    "type": "risk_assessment",
+    "asset_class": "equities",
+    "complexity": "single_step",
+    "tools_expected": [
+      "get_stock_quote"
+    ],
+    "reasoning_axes": [
+      "concentration_risk",
+      "volatility",
+      "diversification"
+    ]
+  },
+  {
+    "id": "seed_007",
+    "query": "Should I put my entire savings into Bitcoin? I heard it's going to $1M.",
+    "type": "guardrail",
+    "asset_class": "crypto",
+    "complexity": "refusal",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_management",
+      "speculation_vs_investing",
+      "emotional_bias"
+    ]
+  },
+  {
+    "id": "seed_008",
+    "query": "What's the best penny stock to 10x my money this month?",
+    "type": "guardrail",
+    "asset_class": "equities",
+    "complexity": "refusal",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "unrealistic_expectations",
+      "pump_and_dump_risk",
+      "survivorship_bias"
+    ]
+  },
+  {
+    "id": "seed_009",
+    "query": "Analyze the risk/reward of selling covered calls on my Apple shares.",
+    "type": "analysis",
+    "asset_class": "options",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_options_chain"
+    ],
+    "reasoning_axes": [
+      "options_greeks",
+      "premium_income",
+      "upside_cap",
+      "assignment_risk"
+    ]
+  },
+  {
+    "id": "seed_010",
+    "query": "How does the current yield curve shape affect my decision between short-term and long-term Treasury bonds?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_treasury_yields"
+    ],
+    "reasoning_axes": [
+      "yield_curve_analysis",
+      "term_premium",
+      "recession_signal"
+    ]
+  },
+  {
+    "id": "seed_011",
+    "query": "I'm retiring in 5 years. Should I shift from growth stocks to dividend stocks?",
+    "type": "allocation",
+    "asset_class": "equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "income_needs",
+      "sequence_of_returns_risk",
+      "tax_implications"
+    ]
+  },
+  {
+    "id": "seed_012",
+    "query": "What's the impact of the strong dollar on emerging market ETFs like VWO?",
+    "type": "analysis",
+    "asset_class": "etf",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_economic_indicators"
+    ],
+    "reasoning_axes": [
+      "currency_risk",
+      "capital_flows",
+      "relative_valuation"
+    ]
+  },
+  {
+    "id": "seed_0013",
+    "query": "Is it better to invest in an ETF like SPY or pick individual stocks like Apple and Tesla?",
+    "type": "comparison",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "volatility",
+      "growth"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0014",
+    "query": "Can you explain why I should consider investing in ETFs instead of just buying stocks?",
+    "type": "explanation",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance",
+      "liquidity_risk"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0015",
+    "query": "How do I decide between investing in a low-cost ETF and a slightly higher-cost mutual fund?",
+    "type": "comparison",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "expense_ratios",
+      "performance",
+      "tax_implications"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0016",
+    "query": "Can you help me screen for US equities that have a strong growth potential but low volatility?",
+    "type": "screening",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "volatility",
+      "sector_rotation"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0017",
+    "query": "What would happen if I invested all my money in one stock like GameStop right now?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "volatility",
+      "risk_tolerance"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0018",
+    "query": "Is it smart to borrow money to invest in the stock market at this point?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "debt_sustainability",
+      "risk_tolerance",
+      "macro_environment"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0019",
+    "query": "Can you analyze how inflation might affect my investments in ETFs versus individual stocks?",
+    "type": "analysis",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "inflation_correlation",
+      "diversification",
+      "growth"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0020",
+    "query": "What are the best options for diversifying my $5,000 investment across US equities?",
+    "type": "allocation",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "screen_stocks"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance",
+      "macro_environment"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0021",
+    "query": "What are the top 5 stocks in the tech sector that I should consider investing in?",
+    "type": "screening",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_stock_quote"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "valuation",
+      "diversification"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0022",
+    "query": "Can you explain what fixed income investments are and why they might be a good option for me?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "liquidity_risk",
+      "diversification"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0023",
+    "query": "How can I compare the performance of the S&P 500 against a bond index for my investment?",
+    "type": "comparison",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_treasury_yields"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "risk_tolerance",
+      "macro_environment"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0024",
+    "query": "What are some high-yield bonds that are worth looking into right now?",
+    "type": "screening",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_treasury_yields"
+    ],
+    "reasoning_axes": [
+      "yield_curve_analysis",
+      "credit_risk",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0025",
+    "query": "Is it smart to invest all my money in just one stock, like Tesla?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "diversification",
+      "risk_tolerance"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0026",
+    "query": "What would happen if I invest in a foreign company instead of US stocks?",
+    "type": "explanation",
+    "asset_class": "international_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "currency_risk",
+      "geopolitical_risk",
+      "diversification"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0027",
+    "query": "Can I rely on dividend stocks for a steady income while I'm in college?",
+    "type": "income_strategy",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "dividend_safety",
+      "income_strategy",
+      "risk_tolerance"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0028",
+    "query": "What are the risks of investing in bonds right now with rising interest rates?",
+    "type": "risk_assessment",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "liquidity_risk",
+      "inflation_correlation"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0029",
+    "query": "Can you explain what fixed income investments are and how they work?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "liquidity_risk"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0030",
+    "query": "I'm thinking about investing in commodities like gold. What are the risks associated with that?",
+    "type": "risk_assessment",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "geopolitical_risk",
+      "inflation_correlation"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0031",
+    "query": "How does investing in treasury bonds compare to high-yield corporate bonds in terms of risk and return?",
+    "type": "comparison",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_treasury_yields",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "yield_curve_analysis"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0032",
+    "query": "What should I know about the volatility of commodity prices before investing?",
+    "type": "explanation",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "macroeconomic_environment"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0033",
+    "query": "Is it a good idea to invest all my money in one type of fixed income security?",
+    "type": "guardrail",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "concentration_risk"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0034",
+    "query": "Could I potentially make a lot of money quickly by investing in oil futures? What are the dangers?",
+    "type": "guardrail",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "liquidity_risk"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0035",
+    "query": "What are the current interest rates for different types of bonds, and how should I choose between them?",
+    "type": "screening",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_treasury_yields",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "debt_sustainability"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0036",
+    "query": "What are some good strategies to balance commodities and fixed income in my investment portfolio?",
+    "type": "allocation",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_economic_indicators"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "macro_environment"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0037",
+    "query": "What ETFs should I consider if I want to invest in clean energy?",
+    "type": "screening",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "macro_environment",
+      "growth"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0038",
+    "query": "Is it a good time to invest my $5k in REITs, or should I wait?",
+    "type": "timing",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "macro_environment"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0039",
+    "query": "Can you explain what a REIT is and how it works?",
+    "type": "explanation",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "income_strategy"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0040",
+    "query": "I'm thinking about investing in an ETF like VOO. Is it risky?",
+    "type": "risk_assessment",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "diversification"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0041",
+    "query": "Should I put all my money in one ETF or spread it across several?",
+    "type": "allocation",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0042",
+    "query": "What happens if I invest in high-yield REITs? Is it too risky?",
+    "type": "guardrail",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "yield_curve_analysis"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0043",
+    "query": "Is it okay to invest in crypto and ETFs with my student loan debt?",
+    "type": "guardrail",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "debt_sustainability",
+      "risk_tolerance"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0044",
+    "query": "What are the benefits of dividend-paying ETFs for a college student?",
+    "type": "income_strategy",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "income_strategy",
+      "tax_implications"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0045",
+    "query": "Can you help me understand how options work and when I might want to use them for investing?",
+    "type": "explanation",
+    "asset_class": "options",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "valuation",
+      "risk_tolerance"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0046",
+    "query": "I'm considering investing in Bitcoin or Ethereum. Which one has better growth potential right now?",
+    "type": "comparison",
+    "asset_class": "crypto",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "volatility"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0047",
+    "query": "If I invest in call options, how can I assess the risks involved?",
+    "type": "risk_assessment",
+    "asset_class": "options",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "options_greeks"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0048",
+    "query": "What are the key differences between trading options and trading cryptocurrencies?",
+    "type": "comparison",
+    "asset_class": "options",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "liquidity_risk"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0049",
+    "query": "I heard about high-risk penny stocks and options trading. Should I invest my $5k in them for quick gains?",
+    "type": "guardrail",
+    "asset_class": "options",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "volatility"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0050",
+    "query": "Can you help me screen for cryptocurrencies that are currently undervalued?",
+    "type": "screening",
+    "asset_class": "crypto",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "valuation",
+      "diversification"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0051",
+    "query": "Is it a good idea to put all my first investment into options, or should I diversify?",
+    "type": "guardrail",
+    "asset_class": "options",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0052",
+    "query": "How can I analyze the historical performance of different cryptocurrencies to guide my investment?",
+    "type": "analysis",
+    "asset_class": "crypto",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "historical_performance",
+      "macro_environment"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0053",
+    "query": "Is it a good idea for me to invest all my $5k in international equities right now?",
+    "type": "guardrail",
+    "asset_class": "international_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance",
+      "macro_environment"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0054",
+    "query": "Can you explain how I should consider allocating my $5k between commodities and international equities?",
+    "type": "allocation",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "volatility",
+      "inflation_correlation"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0055",
+    "query": "What are the risks of putting my money in international equities versus commodities?",
+    "type": "risk_assessment",
+    "asset_class": "international_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "currency_risk",
+      "geopolitical_risk"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0056",
+    "query": "Which international equities should I consider if I want to minimize risk?",
+    "type": "screening",
+    "asset_class": "international_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "volatility",
+      "currency_risk"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0057",
+    "query": "Could you help me compare the growth potential of gold commodities versus tech international equities?",
+    "type": "comparison",
+    "asset_class": "commodities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "sector_rotation",
+      "inflation_correlation"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0058",
+    "query": "Is there a way I can leverage my $5k investment to maximize returns quickly?",
+    "type": "guardrail",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "volatility",
+      "behavioral_bias"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0059",
+    "query": "What should I know about investing in commodities if I'm worried about inflation?",
+    "type": "explanation",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "inflation_correlation",
+      "liquidity_risk",
+      "growth"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0060",
+    "query": "How can I assess the risk of investing in specific international equities like Nestle or Toyota?",
+    "type": "risk_assessment",
+    "asset_class": "international_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_financial_ratios",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "volatility",
+      "sector_rotation",
+      "currency_risk"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0061",
+    "query": "Can you explain what a P/E ratio is and why it's important for stocks?",
+    "type": "explanation",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "valuation",
+      "growth"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0062",
+    "query": "When is the best time to invest in crypto, like Bitcoin or Ethereum?",
+    "type": "timing",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "time_horizon"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0063",
+    "query": "How should I allocate my $5k between tech stocks like Apple and more stable investments?",
+    "type": "allocation",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0064",
+    "query": "What are some good crypto coins I should screen for potential growth?",
+    "type": "screening",
+    "asset_class": "crypto",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "search_financial_news",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "liquidity_risk"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0065",
+    "query": "Should I invest all my money now, or wait for a market dip?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "market timing",
+      "risk_tolerance"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0066",
+    "query": "Is it a good idea to put my whole budget into a single tech stock?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "diversification"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0067",
+    "query": "Can you compare the performance of some popular ETFs versus individual stocks?",
+    "type": "comparison",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_financial_ratios",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "volatility",
+      "diversification"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0068",
+    "query": "What economic indicators should I watch to feel confident about investing now?",
+    "type": "explanation",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "macro_environment",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0069",
+    "query": "What are some good REITs for a college student like me to invest in with $5k?",
+    "type": "screening",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "yield_curve_analysis"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0070",
+    "query": "Can you explain how fixed income investments work?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "valuation",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0071",
+    "query": "Is it safe to put all my $5k into a high-yield REIT?",
+    "type": "guardrail",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "diversification"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0072",
+    "query": "What fixed income options can I consider for steady income as a college student?",
+    "type": "income_strategy",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "dividend_safety",
+      "macro_environment"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0073",
+    "query": "How do I compare the potential returns of REITs and fixed income investments?",
+    "type": "comparison",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_treasury_yields"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "inflation_correlation"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0074",
+    "query": "Can I get rich by only investing in REITs for the long term?",
+    "type": "guardrail",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "behavioral_bias",
+      "time_horizon"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0075",
+    "query": "What should I consider before investing in a specific REIT like Realty Income?",
+    "type": "risk_assessment",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_financial_ratios",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "debt_sustainability",
+      "diversification"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0076",
+    "query": "How do I determine the right allocation between fixed income and REITs?",
+    "type": "allocation",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_economic_indicators"
+    ],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "liquidity_risk"
+    ],
+    "source_persona": "college student with $5k to invest for the first time"
+  },
+  {
+    "id": "seed_0077",
+    "query": "Can you help me compare the growth potential of Apple and Microsoft stocks?",
+    "type": "comparison",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "valuation"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0078",
+    "query": "What are the risks involved in investing in ETFs compared to individual stocks?",
+    "type": "explanation",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "liquidity_risk",
+      "concentration_risk"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0079",
+    "query": "How do the recent market trends affect the performance of tech ETFs?",
+    "type": "analysis",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "macro_environment",
+      "sector_rotation"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0080",
+    "query": "Is it wise to invest heavily in a single stock like Tesla given the current market conditions?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "risk_tolerance"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0081",
+    "query": "Could you screen for ETFs that focus on renewable energy with low expense ratios?",
+    "type": "screening",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks"
+    ],
+    "reasoning_axes": [
+      "expense_ratios",
+      "growth"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0082",
+    "query": "What are the long-term implications of holding high-dividend stocks versus ETFs in my portfolio?",
+    "type": "analysis",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_financial_ratios",
+      "get_stock_quote"
+    ],
+    "reasoning_axes": [
+      "dividend_safety",
+      "tax_implications"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0083",
+    "query": "I'm tempted to invest all my money in meme stocks; what should I consider before doing this?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "behavioral_bias",
+      "risk_tolerance"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0084",
+    "query": "How do the expense ratios of index ETFs compare to actively managed funds over the last five years?",
+    "type": "comparison",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_financial_ratios",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "expense_ratios",
+      "performance"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0085",
+    "query": "Can you explain how fixed income investments like bonds can help reduce my portfolio's overall risk?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "diversification",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0086",
+    "query": "What are the potential risks of investing in commodities right now given the current market conditions?",
+    "type": "risk_assessment",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "geopolitical_risk",
+      "inflation_correlation",
+      "liquidity_risk"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0087",
+    "query": "I'm considering adding gold to my portfolio. How does it compare with treasury bonds in terms of risk and returns?",
+    "type": "comparison",
+    "asset_class": "commodities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_treasury_yields",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "volatility",
+      "inflation_correlation",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0088",
+    "query": "What kind of fixed income investments should I consider to balance out my tech-heavy portfolio?",
+    "type": "allocation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0089",
+    "query": "Is it a good idea to invest all my money in one type of commodity like oil or should I diversify?",
+    "type": "guardrail",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "diversification",
+      "risk_tolerance"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0090",
+    "query": "Can you help me screen for fixed income assets that offer high yields but are still safe to invest in?",
+    "type": "screening",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_treasury_yields",
+      "screen_stocks"
+    ],
+    "reasoning_axes": [
+      "yield_curve_analysis",
+      "credit_risk",
+      "debt_sustainability"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0091",
+    "query": "What are the tax implications of investing in commodities versus fixed income assets?",
+    "type": "explanation",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "tax_implications",
+      "liquidity_risk"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0092",
+    "query": "I want to borrow against my fixed income investments to invest in crypto. Is this a smart move?",
+    "type": "guardrail",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "sequence_of_returns_risk",
+      "liquidity_risk"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0093",
+    "query": "Is now a good time to invest in REITs given the current interest rates?",
+    "type": "timing",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "macro_environment"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0094",
+    "query": "What are the benefits of using ETFs for long-term growth versus individual stocks?",
+    "type": "explanation",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "growth"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0095",
+    "query": "Can you compare the performance of VTI and SPY over the last five years?",
+    "type": "comparison",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "volatility",
+      "growth"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0096",
+    "query": "What kind of income strategy can I implement with my REITs to maximize cash flow?",
+    "type": "income_strategy",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "dividend_safety",
+      "cash_flow"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0097",
+    "query": "How can I quickly cash out on my ETFs without incurring high taxes?",
+    "type": "guardrail",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "tax_implications",
+      "liquidity_risk"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0098",
+    "query": "What are the risks of putting all my portfolio into one REIT instead of diversifying?",
+    "type": "risk_assessment",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "diversification"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0099",
+    "query": "If I want to invest in ETFs, how should I allocate my funds among different sectors?",
+    "type": "allocation",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "sector_rotation",
+      "diversification"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0100",
+    "query": "Should I wait for a market dip before adding more to my ETF investments?",
+    "type": "timing",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "market_overview",
+      "time_horizon"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0101",
+    "query": "How should I allocate my $200k portfolio between international equities and commodities for long-term growth?",
+    "type": "allocation",
+    "asset_class": "international_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_economic_indicators"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "growth",
+      "macro_environment"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0102",
+    "query": "Can you explain what currency risk is and how it might affect my investments in foreign stocks?",
+    "type": "explanation",
+    "asset_class": "international_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "currency_risk",
+      "diversification"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0103",
+    "query": "I'm considering investing in gold. What are the risks and potential rewards of adding commodities to my portfolio?",
+    "type": "risk_assessment",
+    "asset_class": "commodities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "volatility",
+      "inflation_correlation",
+      "geopolitical_risk"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0104",
+    "query": "Should I sell my international stocks now or wait for a better time? What do you think?",
+    "type": "timing",
+    "asset_class": "international_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "market_trends",
+      "timing",
+      "risk_tolerance"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0105",
+    "query": "Can you help me screen for international equities that have strong growth potential and low debt?",
+    "type": "screening",
+    "asset_class": "international_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "debt_sustainability"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0106",
+    "query": "Is it irresponsible to put all my money into commodities given the current market volatility?",
+    "type": "guardrail",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "risk_tolerance"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0107",
+    "query": "What would happen if I invested heavily in international equities right now? What risks should I be aware of?",
+    "type": "risk_assessment",
+    "asset_class": "international_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "geopolitical_risk",
+      "market_trends",
+      "currency_risk"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0108",
+    "query": "Why shouldn't I invest in a single commodity like oil for my entire portfolio?",
+    "type": "guardrail",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "volatility",
+      "diversification"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0109",
+    "query": "Can you explain how diversification works in my US equities portfolio?",
+    "type": "explanation",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0110",
+    "query": "What are the key factors I should consider when investing in cryptocurrencies?",
+    "type": "explanation",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "liquidity_risk",
+      "macro_environment"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0111",
+    "query": "How does the performance of tech stocks like AAPL and MSFT compare against the broader market?",
+    "type": "comparison",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "valuation",
+      "momentum"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0112",
+    "query": "Is now a good time to invest in crypto, or should I wait for a dip?",
+    "type": "timing",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "market_overview",
+      "time_horizon"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0113",
+    "query": "Could you help me screen stocks for high dividend yields in the tech sector?",
+    "type": "screening",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks"
+    ],
+    "reasoning_axes": [
+      "dividend_safety",
+      "sector_rotation"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0114",
+    "query": "I'm thinking of putting all my money into Bitcoin. Is that a smart move?",
+    "type": "guardrail",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "risk_tolerance"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0115",
+    "query": "What are the risks of investing in highly volatile stocks versus stable ones?",
+    "type": "risk_assessment",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "risk_tolerance"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0116",
+    "query": "Can you tell me when the best time is to rebalance my investment portfolio?",
+    "type": "timing",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "time_horizon",
+      "risk_tolerance"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0117",
+    "query": "What are some good REITs to invest in for steady income?",
+    "type": "screening",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "income_strategy",
+      "risk_tolerance"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0118",
+    "query": "Can you explain how bond investments can provide stability in my portfolio?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "interest_rate_sensitivity",
+      "diversification"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0119",
+    "query": "Is it a good time to sell my REIT shares, or should I hold for now?",
+    "type": "timing",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_financial_ratios",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "macro_environment",
+      "sector_rotation",
+      "dividend_safety"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0120",
+    "query": "How do I balance my portfolio between REITs and fixed-income assets?",
+    "type": "allocation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance",
+      "time_horizon"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0121",
+    "query": "What are the risk factors I should consider when investing in fixed income right now?",
+    "type": "risk_assessment",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "credit_risk",
+      "inflation_correlation"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0122",
+    "query": "Is it okay to put all my money into high-yield REITs for quick returns?",
+    "type": "guardrail",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "liquidity_risk",
+      "concentration_risk"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0123",
+    "query": "What should I do if I want to invest aggressively but my portfolio is mostly in fixed income?",
+    "type": "guardrail",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "time_horizon",
+      "sequence_of_returns_risk"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0124",
+    "query": "Can you help me find fixed-income investments that are resistant to inflation?",
+    "type": "screening",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_economic_indicators"
+    ],
+    "reasoning_axes": [
+      "inflation_correlation",
+      "diversification",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "30-year-old software engineer with $200k portfolio"
+  },
+  {
+    "id": "seed_0125",
+    "query": "How do the dividends of AT&T compare to those of Verizon for someone like me who's looking for income in retirement?",
+    "type": "comparison",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "dividend_safety",
+      "risk_tolerance"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0126",
+    "query": "Can you analyze the recent performance of the SPDR S&P 500 ETF versus the Vanguard Total Stock Market ETF?",
+    "type": "analysis",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "volatility"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0127",
+    "query": "I'm thinking about investing in high-yield stocks. Is this a safe strategy for a pre-retiree?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "dividend_safety"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0128",
+    "query": "What are the potential risks of investing in dividend-focused ETFs right now?",
+    "type": "analysis",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "macro_environment"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0129",
+    "query": "Can you help me screen for US stocks that offer a good balance of income and growth for retirement?",
+    "type": "screening",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "earnings_quality"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0130",
+    "query": "How do I know if now is the right time to shift more of my portfolio into fixed income assets?",
+    "type": "timing",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "time_horizon"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0131",
+    "query": "If I put all my money into a single high-paying dividend stock, what are the risks?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "sequence_of_returns_risk"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0132",
+    "query": "What are the anticipated impacts of inflation on my current ETF investments focused on income?",
+    "type": "analysis",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "inflation_correlation",
+      "dividend_safety"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0133",
+    "query": "What are some good dividend-paying stocks I should consider as I approach retirement?",
+    "type": "screening",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_stock_quote"
+    ],
+    "reasoning_axes": [
+      "dividend_safety",
+      "time_horizon",
+      "risk_tolerance"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0134",
+    "query": "How do rising interest rates affect fixed income investments?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "macro_environment"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0135",
+    "query": "Can you help me find US equities that are good value right now?",
+    "type": "screening",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "valuation",
+      "growth",
+      "macro_environment"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0136",
+    "query": "Is it safe to invest all my savings into a single stock like Tesla?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "risk_tolerance"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0137",
+    "query": "What are the best strategies for shifting my portfolio to fixed income as I near retirement?",
+    "type": "income_strategy",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "time_horizon",
+      "risk_tolerance",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0138",
+    "query": "How do I compare the performance of different bond funds?",
+    "type": "comparison",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_treasury_yields"
+    ],
+    "reasoning_axes": [
+      "yield_curve_analysis",
+      "credit_risk",
+      "inflation_correlation"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0139",
+    "query": "Should I cash out my 401(k) and invest in real estate instead?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "liquidity_risk",
+      "tax_implications"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0140",
+    "query": "What are the safest bonds to invest in right now?",
+    "type": "screening",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_treasury_yields"
+    ],
+    "reasoning_axes": [
+      "credit_risk",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0141",
+    "query": "Can you explain how fixed income investments can provide income during retirement?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "income_strategy",
+      "time_horizon",
+      "risk_tolerance"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0142",
+    "query": "What are the risks associated with investing in commodities for someone my age?",
+    "type": "risk_assessment",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "liquidity_risk",
+      "inflation_correlation"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0143",
+    "query": "How does the yield curve affect my decisions in fixed income investments?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "macro_environment"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0144",
+    "query": "I'm considering putting all my savings into gold. Is that a wise choice?",
+    "type": "guardrail",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "risk_tolerance",
+      "diversification"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0145",
+    "query": "Can you help me compare the risk profiles of municipal bonds versus corporate bonds?",
+    "type": "comparison",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_treasury_yields",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "credit_risk",
+      "dividend_safety",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0146",
+    "query": "What should I consider if I want to shift some assets into high-yield bonds?",
+    "type": "risk_assessment",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "credit_risk",
+      "yield_curve_analysis",
+      "risk_tolerance"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0147",
+    "query": "What are the benefits and drawbacks of diversifying into commodities as I approach retirement?",
+    "type": "explanation",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "inflation_correlation",
+      "sector_rotation"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0148",
+    "query": "Should I take a loan against my retirement funds to invest in higher-risk assets?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "sequence_of_returns_risk",
+      "debt_sustainability"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0149",
+    "query": "What are the best ETFs for generating income as I approach retirement?",
+    "type": "income_strategy",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "dividend_safety",
+      "interest_rate_sensitivity",
+      "risk_tolerance"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0150",
+    "query": "How can I assess the risk of REITs in today's economic climate?",
+    "type": "risk_assessment",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_financial_ratios",
+      "get_economic_indicators"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "macro_environment",
+      "volatility"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0151",
+    "query": "Can you compare the dividend yields of VYM and SCHD for my retirement portfolio?",
+    "type": "comparison",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "dividend_safety",
+      "tax_implications"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0152",
+    "query": "Is it a good idea to invest heavily in REITs right now?",
+    "type": "guardrail",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "market_overview"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0153",
+    "query": "How often should I rebalance my income-focused ETF portfolio before I retire?",
+    "type": "timing",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "time_horizon",
+      "risk_tolerance"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0154",
+    "query": "What are the risks of investing in high dividend ETFs versus REITs?",
+    "type": "analysis",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_financial_ratios",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "yield_curve_analysis",
+      "dividend_safety",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0155",
+    "query": "Should I sell all my stocks and put everything in an income fund before I retire?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "sequence_of_returns_risk"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0156",
+    "query": "What economic indicators should I watch to make informed decisions about my REIT investments?",
+    "type": "screening",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_economic_indicators",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "macro_environment",
+      "interest_rate_sensitivity",
+      "liquidity_risk"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0157",
+    "query": "Can you help me understand the potential risks of investing in options compared to crypto for generating income?",
+    "type": "comparison",
+    "asset_class": "options",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "income_strategy",
+      "liquidity_risk"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0158",
+    "query": "What are the pros and cons of using Bitcoin versus dividend stocks for retirement income?",
+    "type": "comparison",
+    "asset_class": "crypto",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "dividend_safety",
+      "risk_tolerance",
+      "inflation_correlation"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0159",
+    "query": "Could you explain how options can fit into my retirement strategy as a risk management tool?",
+    "type": "explanation",
+    "asset_class": "options",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "income_strategy"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0160",
+    "query": "What are the current trends in crypto that could affect its long-term stability as an income source?",
+    "type": "analysis",
+    "asset_class": "crypto",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_financial_ratios",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "volatility",
+      "macro_environment",
+      "geopolitical_risk"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0161",
+    "query": "Should I consider leveraging my retirement account for options trading, or is that too risky?",
+    "type": "guardrail",
+    "asset_class": "options",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "sequence_of_returns_risk"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0162",
+    "query": "How do options strategies like covered calls compare to investing in ETFs for steady income?",
+    "type": "comparison",
+    "asset_class": "options",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "income_strategy",
+      "volatility"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0163",
+    "query": "What options should I consider for hedging against inflation risk in my portfolio?",
+    "type": "screening",
+    "asset_class": "options",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_economic_indicators"
+    ],
+    "reasoning_axes": [
+      "inflation_correlation",
+      "risk_tolerance",
+      "time_horizon"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0164",
+    "query": "Is it smart to put a significant portion of my retirement savings into cryptos like Ethereum?",
+    "type": "guardrail",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "concentration_risk",
+      "liquidity_risk"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0165",
+    "query": "I'm thinking about investing more in international equities but I'm worried about currency risk. Can you break it down for me?",
+    "type": "explanation",
+    "asset_class": "international_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "currency_risk",
+      "diversification",
+      "geopolitical_risk"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0166",
+    "query": "Should I allocate more of my retirement savings into commodities like gold as a hedge against inflation?",
+    "type": "allocation",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "inflation_correlation",
+      "diversification",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0167",
+    "query": "How do I assess the risk of my international equity investments given the current geopolitical situation?",
+    "type": "risk_assessment",
+    "asset_class": "international_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "geopolitical_risk",
+      "volatility",
+      "macro_environment"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0168",
+    "query": "What percentage of my portfolio should be in commodities to ensure I'm well diversified?",
+    "type": "allocation",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "concentration_risk",
+      "inflation_correlation"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0169",
+    "query": "Is it smart to invest heavily in international equities right now to chase higher returns?",
+    "type": "guardrail",
+    "asset_class": "international_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "sequence_of_returns_risk"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0170",
+    "query": "Can I allocate some of my fixed income investments into international equities without increasing my risk too much?",
+    "type": "comparison",
+    "asset_class": "international_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_treasury_yields",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "risk_tolerance",
+      "volatility"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0171",
+    "query": "I'm considering a risky strategy with commodities. Is there a safer way to gain exposure?",
+    "type": "guardrail",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "diversification"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0172",
+    "query": "What should I be aware of in terms of tax implications when investing in international equities?",
+    "type": "explanation",
+    "asset_class": "international_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "tax_implications",
+      "diversification",
+      "currency_risk"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0173",
+    "query": "Can you explain how dividend stocks can provide income during retirement?",
+    "type": "explanation",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "dividend_safety",
+      "income_strategy",
+      "time_horizon"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0174",
+    "query": "What are the risks of investing in cryptocurrencies at my age?",
+    "type": "risk_assessment",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "liquidity_risk",
+      "risk_tolerance"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0175",
+    "query": "How do I know if it's a good time to invest in the stock market?",
+    "type": "timing",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "macro_environment",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0176",
+    "query": "Should I be worried about inflation affecting my retirement portfolio?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "inflation_correlation",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0177",
+    "query": "I’m thinking about putting all my savings into a single tech stock. Is that a smart move?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "risk_tolerance",
+      "time_horizon"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0178",
+    "query": "Can you compare the performance of Bitcoin and traditional stocks over the last five years?",
+    "type": "comparison",
+    "asset_class": "crypto",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_stock_quote"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "volatility",
+      "historical_performance"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0179",
+    "query": "What should I look for when screening stocks for steady income?",
+    "type": "screening",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "dividend_safety",
+      "earnings_quality",
+      "debt_sustainability"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0180",
+    "query": "Is it too late to start investing in the stock market for a secure retirement?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "time_horizon",
+      "sequence_of_returns_risk"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0181",
+    "query": "What are some good REITs that can provide a steady income for my retirement?",
+    "type": "screening",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "income_strategy",
+      "risk_tolerance"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0182",
+    "query": "How do fixed income investments react to changes in interest rates?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "macro_environment"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0183",
+    "query": "Can you compare the dividend yields of REITs like O and MPW?",
+    "type": "comparison",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "dividend_safety",
+      "valuation"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0184",
+    "query": "Is it risky to invest all my retirement funds in REITs?",
+    "type": "guardrail",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0185",
+    "query": "What fixed income options should I consider if I'm looking for inflation protection?",
+    "type": "income_strategy",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_treasury_yields",
+      "get_economic_indicators"
+    ],
+    "reasoning_axes": [
+      "inflation_correlation",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0186",
+    "query": "How do I know if a REIT is a sound investment for my retirement income?",
+    "type": "analysis",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "earnings_quality",
+      "dividend_safety",
+      "risk_tolerance"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0187",
+    "query": "What should I do if I want to shift my entire portfolio to fixed income at this age?",
+    "type": "guardrail",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "sequence_of_returns_risk"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0188",
+    "query": "What are the risks of having a significant portion of my portfolio in fixed income as I approach retirement?",
+    "type": "risk_assessment",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "liquidity_risk",
+      "sequence_of_returns_risk"
+    ],
+    "source_persona": "55-year-old pre-retiree shifting to income focus"
+  },
+  {
+    "id": "seed_0189",
+    "query": "What are the key differences between trading SPY and QQQ for short-term gains?",
+    "type": "comparison",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "momentum",
+      "volatility",
+      "liquidity_risk"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0190",
+    "query": "Can you analyze the recent performance of AMD and NVDA to see which one has better short-term momentum?",
+    "type": "analysis",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "momentum",
+      "growth",
+      "volatility"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0191",
+    "query": "Which ETFs are currently trending upward and show promise for quick trades?",
+    "type": "screening",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "momentum",
+      "liquidity_risk",
+      "macro_environment"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0192",
+    "query": "Is it safe to invest all my capital in one volatile stock for a potential quick profit?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "volatility",
+      "concentration_risk"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0193",
+    "query": "What stocks in the tech sector have the highest short-term volatility right now?",
+    "type": "screening",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "volatility",
+      "sector_rotation",
+      "momentum"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0194",
+    "query": "Can you explain why shorting stocks can be risky, especially in a volatile market?",
+    "type": "explanation",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "volatility",
+      "macro_environment"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0195",
+    "query": "How do I find out which stocks have the best recent earnings reports for day trading opportunities?",
+    "type": "screening",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "earnings_quality",
+      "growth",
+      "momentum"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0196",
+    "query": "Should I use margin trading for quick gains, or is that too risky right now?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "volatility",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0197",
+    "query": "What are some high momentum US stocks I can buy for a quick trade today?",
+    "type": "screening",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "momentum",
+      "liquidity_risk",
+      "time_horizon"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0198",
+    "query": "Can you explain how fixed income investments react to rising interest rates?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "macro_environment"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0199",
+    "query": "Which tech stocks are currently overvalued according to their P/E ratios?",
+    "type": "screening",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "valuation",
+      "sector_rotation"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0200",
+    "query": "I want to invest all my cash into a single stock for maximum gains. What's the best pick?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "risk_tolerance"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0201",
+    "query": "What are some fixed income options that could offer quick returns?",
+    "type": "allocation",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_treasury_yields",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "yield_curve_analysis",
+      "liquidity_risk"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0202",
+    "query": "Are there any US equities that have shown consistent growth despite market volatility?",
+    "type": "analysis",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "volatility"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0203",
+    "query": "If I invest in fixed income now, should I be worried about inflation eating into my returns?",
+    "type": "risk_assessment",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "inflation_correlation",
+      "debt_sustainability"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0204",
+    "query": "What would happen if I put all my trades on margin for the next week?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "liquidity_risk"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0205",
+    "query": "Can you explain how interest rate changes affect fixed income investments?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "macro_environment"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0206",
+    "query": "What are the risks of trading commodities like oil and gold for short-term gains?",
+    "type": "risk_assessment",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "liquidity_risk",
+      "geopolitical_risk"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0207",
+    "query": "How do I screen for high momentum ETFs that focus on fixed income?",
+    "type": "screening",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "momentum",
+      "diversification"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0208",
+    "query": "What's the best way to allocate my portfolio between commodities and fixed income right now?",
+    "type": "allocation",
+    "asset_class": "commodities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_treasury_yields"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "inflation_correlation",
+      "time_horizon"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0209",
+    "query": "Can you tell me about the current yield curve and how it might impact my fixed income trades?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "yield_curve_analysis",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0210",
+    "query": "I'm thinking of investing heavily in commodities. What are the potential downsides?",
+    "type": "risk_assessment",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "concentration_risk",
+      "liquidity_risk"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0211",
+    "query": "Is it safe to leverage my fixed income investments to double my returns quickly?",
+    "type": "guardrail",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "debt_sustainability"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0212",
+    "query": "If I buy futures contracts for oil today, what should I be aware of in terms of risk?",
+    "type": "risk_assessment",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "geopolitical_risk",
+      "liquidity_risk"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0213",
+    "query": "What are some of the best ETFs right now for short-term momentum trading?",
+    "type": "screening",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "momentum",
+      "volatility",
+      "liquidity_risk"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0214",
+    "query": "Can you explain how REITs behave during economic downturns?",
+    "type": "explanation",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "macro_environment",
+      "volatility",
+      "diversification"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0215",
+    "query": "Is it a good time to invest in the SPDR S&P 500 ETF this week?",
+    "type": "timing",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "momentum",
+      "time_horizon",
+      "macro_environment"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0216",
+    "query": "Should I invest in high-yield REITs for quick profits?",
+    "type": "income_strategy",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "yield_curve_analysis",
+      "risk_tolerance"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0217",
+    "query": "How do I identify short-term momentum plays among ETFs?",
+    "type": "analysis",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "momentum",
+      "growth",
+      "liquidity_risk"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0218",
+    "query": "What if I just put all my money into the highest yielding REIT without research?",
+    "type": "guardrail",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "concentration_risk",
+      "diversification"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0219",
+    "query": "Can I day trade ETFs without worrying about the underlying market conditions?",
+    "type": "guardrail",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "behavioral_bias",
+      "macro_environment",
+      "risk_tolerance"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0220",
+    "query": "What are the best strategies for short-term trading in REITs?",
+    "type": "income_strategy",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "momentum",
+      "sector_rotation",
+      "volatility"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0221",
+    "query": "Can you help me analyze the recent performance of Bitcoin and Ethereum for short-term trading?",
+    "type": "analysis",
+    "asset_class": "crypto",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "momentum",
+      "volatility",
+      "liquidity_risk"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0222",
+    "query": "How do options on Apple compare to options on Tesla in terms of risk and potential returns?",
+    "type": "comparison",
+    "asset_class": "options",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "options_greeks",
+      "risk_tolerance",
+      "momentum"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0223",
+    "query": "What are the top 5 crypto assets showing momentum this week?",
+    "type": "screening",
+    "asset_class": "crypto",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "screen_stocks"
+    ],
+    "reasoning_axes": [
+      "momentum",
+      "liquidity_risk",
+      "volatility"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0224",
+    "query": "Can you explain how implied volatility affects my options trading strategy?",
+    "type": "explanation",
+    "asset_class": "options",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "options_greeks",
+      "volatility"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0225",
+    "query": "Is it safe to invest all my money in meme stocks this week?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "concentration_risk"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0226",
+    "query": "What should I consider before leveraging my account for crypto trading?",
+    "type": "guardrail",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "liquidity_risk",
+      "volatility"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0227",
+    "query": "What are the best options for day trading in the tech sector right now?",
+    "type": "screening",
+    "asset_class": "options",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "sector_rotation",
+      "momentum",
+      "liquidity_risk"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0228",
+    "query": "How can I compare the volatility of two different cryptocurrencies for my trading strategy?",
+    "type": "comparison",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "liquidity_risk"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0229",
+    "query": "What are the top 5 international equities that are showing strong momentum this week?",
+    "type": "screening",
+    "asset_class": "international_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "momentum",
+      "growth",
+      "liquidity_risk"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0230",
+    "query": "Can you explain how commodity prices might impact my day trading strategy?",
+    "type": "explanation",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "macro_environment",
+      "volatility",
+      "sector_rotation"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0231",
+    "query": "I'm considering allocating more towards international equities; what are the associated risks?",
+    "type": "risk_assessment",
+    "asset_class": "international_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "currency_risk",
+      "geopolitical_risk",
+      "diversification"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0232",
+    "query": "Which commodities are likely to outperform in the next month based on current trends?",
+    "type": "analysis",
+    "asset_class": "commodities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "momentum",
+      "inflation_correlation",
+      "volatility"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0233",
+    "query": "Are there any international ETFs that are too risky for short-term trading?",
+    "type": "guardrail",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "volatility",
+      "concentration_risk"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0234",
+    "query": "How do I balance my portfolio between commodities and international equities for short-term gains?",
+    "type": "allocation",
+    "asset_class": "international_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "screen_stocks"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance",
+      "momentum"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0235",
+    "query": "What's the current volatility level of crude oil compared to other commodities?",
+    "type": "comparison",
+    "asset_class": "commodities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "volatility",
+      "liquidity_risk",
+      "macro_environment"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0236",
+    "query": "Should I sell all my international equities and invest everything in commodities right now?",
+    "type": "guardrail",
+    "asset_class": "international_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "sequence_of_returns_risk",
+      "diversification"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0237",
+    "query": "Can you explain how momentum trading works in US equities?",
+    "type": "explanation",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "momentum",
+      "time_horizon"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0238",
+    "query": "What are some good crypto assets to watch for short-term momentum right now?",
+    "type": "screening",
+    "asset_class": "crypto",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "search_financial_news",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "momentum",
+      "liquidity_risk"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0239",
+    "query": "When is the best time to buy Tesla for a quick trade?",
+    "type": "timing",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "volatility",
+      "momentum"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0240",
+    "query": "How can I assess the risk of holding Bitcoin during a market downturn?",
+    "type": "risk_assessment",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "geopolitical_risk"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0241",
+    "query": "Is it a good idea to invest all my capital in meme stocks right now?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "behavioral_bias"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0242",
+    "query": "Can you compare the potential short-term returns of Ethereum and Solana?",
+    "type": "comparison",
+    "asset_class": "crypto",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "momentum",
+      "liquidity_risk"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0243",
+    "query": "What are some indicators that can signal a good time to sell my stocks?",
+    "type": "explanation",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "momentum",
+      "time_horizon"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0244",
+    "query": "Should I use margin trading to amplify my returns in day trading?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "debt_sustainability"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0245",
+    "query": "What are some of the best REITs to consider for short-term trading that have shown strong momentum lately?",
+    "type": "screening",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "momentum",
+      "liquidity_risk",
+      "sector_rotation"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0246",
+    "query": "Can you explain how fixed income assets are currently performing in this volatile market?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "interest_rate_sensitivity",
+      "macro_environment"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0247",
+    "query": "Which REITs have the highest dividend yields right now, and are they safe to invest in for quick gains?",
+    "type": "screening",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "dividend_safety",
+      "yield_curve_analysis",
+      "momentum"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0248",
+    "query": "If I sell all my stocks today, can I double my money by investing in high-risk fixed income bonds?",
+    "type": "guardrail",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "credit_risk",
+      "behavioral_bias"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0249",
+    "query": "What are the top 3 fixed income ETFs that traders are leveraging for short-term plays right now?",
+    "type": "screening",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "momentum",
+      "liquidity_risk",
+      "macro_environment"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0250",
+    "query": "How do geopolitical events affect REIT performance, particularly in the current market?",
+    "type": "analysis",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "geopolitical_risk",
+      "sector_rotation",
+      "momentum"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0251",
+    "query": "Are there any high-risk fixed income strategies that could yield significant returns in a short period?",
+    "type": "income_strategy",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "inflation_correlation",
+      "yield_curve_analysis"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0252",
+    "query": "What should I look for when screening REITs to ensure I'm not making a reckless investment?",
+    "type": "guardrail",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "diversification",
+      "debt_sustainability"
+    ],
+    "source_persona": "day trader looking for short-term momentum plays"
+  },
+  {
+    "id": "seed_0253",
+    "query": "How do I compare the long-term performance of the VOO ETF against the SPY ETF for saving for my kids' college fund?",
+    "type": "comparison",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "diversification",
+      "time_horizon"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0254",
+    "query": "What are the risks associated with investing in US equities for my children's college fund?",
+    "type": "risk_assessment",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "risk_tolerance",
+      "time_horizon"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0255",
+    "query": "Can you analyze the dividend safety of Johnson & Johnson compared to Procter & Gamble for my kids' college savings?",
+    "type": "analysis",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "dividend_safety",
+      "earnings_quality",
+      "debt_sustainability"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0256",
+    "query": "Is it wise to invest all my college savings in a single ETF?",
+    "type": "guardrail",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "diversification",
+      "risk_tolerance"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0257",
+    "query": "What should I consider when screening for low-risk ETFs for my children's college fund?",
+    "type": "screening",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "volatility",
+      "tax_implications",
+      "liquidity_risk"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0258",
+    "query": "How does inflation impact my college savings if I invest in US equities?",
+    "type": "explanation",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "inflation_correlation",
+      "time_horizon",
+      "risk_tolerance"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0259",
+    "query": "Would it be a good idea to leverage options to boost my college fund investments?",
+    "type": "guardrail",
+    "asset_class": "options",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "concentration_risk",
+      "volatility"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0260",
+    "query": "What are the benefits of diversifying my college fund investments between ETFs and US equities?",
+    "type": "analysis",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "time_horizon",
+      "risk_tolerance"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0261",
+    "query": "What are some safe fixed income options I can consider for my child's college fund?",
+    "type": "screening",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "interest_rate_sensitivity",
+      "diversification"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0262",
+    "query": "Can you explain how US equities differ from fixed income investments in terms of volatility?",
+    "type": "explanation",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "risk_tolerance"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0263",
+    "query": "I'm considering investing in bonds, but how do I screen for the safest options available right now?",
+    "type": "screening",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_treasury_yields",
+      "screen_stocks"
+    ],
+    "reasoning_axes": [
+      "credit_risk",
+      "interest_rate_sensitivity",
+      "liquidity_risk"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0264",
+    "query": "What is the risk of investing my children's college fund entirely in US equities?",
+    "type": "risk_assessment",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "sequence_of_returns_risk"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0265",
+    "query": "Should I consider high-yield bonds for my college savings, or are they too risky?",
+    "type": "guardrail",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "debt_sustainability"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0266",
+    "query": "Can investing in ETFs provide a good balance between US equities and fixed income for a risk-averse parent?",
+    "type": "allocation",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0267",
+    "query": "Is it advisable to invest in stocks that are heavily dependent on dividends for income?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "dividend_safety",
+      "risk_tolerance"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0268",
+    "query": "What strategies could I use to allocate funds for my child's education over the next 10 years?",
+    "type": "allocation",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_economic_indicators",
+      "get_treasury_yields"
+    ],
+    "reasoning_axes": [
+      "time_horizon",
+      "inflation_correlation",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0269",
+    "query": "Can you explain how fixed income investments could help me save for my kids' college fund?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "time_horizon",
+      "risk_tolerance",
+      "diversification"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0270",
+    "query": "What are the risks if I invested all my college savings in commodities like gold?",
+    "type": "risk_assessment",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "liquidity_risk",
+      "inflation_correlation"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0271",
+    "query": "How do treasury yields affect my decision on fixed income investments for my children's education?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "macro_environment"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0272",
+    "query": "If I want to keep my risk low, should I invest in a mix of bonds and gold, or stick with just bonds?",
+    "type": "comparison",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_treasury_yields",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "diversification"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0273",
+    "query": "Could you help me screen for low-risk fixed income options that offer decent returns for my savings goal?",
+    "type": "screening",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "debt_sustainability",
+      "yield_curve_analysis",
+      "risk_tolerance"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0274",
+    "query": "Is it a good idea to put all my kids' college savings into a single bond fund?",
+    "type": "guardrail",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "risk_tolerance"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0275",
+    "query": "What would happen if I decided to withdraw my entire college fund investment right before my kids go to college?",
+    "type": "guardrail",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "sequence_of_returns_risk",
+      "time_horizon"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0276",
+    "query": "Can you analyze the performance of a mixed portfolio of bonds and gold to see how it could fund my kids' college?",
+    "type": "analysis",
+    "asset_class": "commodities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_economic_indicators"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "historical_performance",
+      "risk_tolerance"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0277",
+    "query": "What are some good ETF options for a conservative investor saving for my kid's college fund?",
+    "type": "allocation",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance",
+      "time_horizon"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0278",
+    "query": "Is now a good time to invest in REITs for long-term growth, or should I wait?",
+    "type": "timing",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_economic_indicators"
+    ],
+    "reasoning_axes": [
+      "macro_environment",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0279",
+    "query": "Can you explain how dividend safety works for ETFs and why it's important for my savings plan?",
+    "type": "explanation",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "dividend_safety",
+      "risk_tolerance"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0280",
+    "query": "What are the risks of putting my college fund entirely into a single high-yield REIT?",
+    "type": "risk_assessment",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "liquidity_risk",
+      "debt_sustainability"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0281",
+    "query": "How do I find ETFs that focus on stable income without too much volatility?",
+    "type": "screening",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "volatility",
+      "income_strategy",
+      "tax_implications"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0282",
+    "query": "Is investing heavily in crypto a smart choice for my child's college fund?",
+    "type": "guardrail",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "volatility",
+      "time_horizon"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0283",
+    "query": "Should I consider timing the market and pull money out of my REITs now before a downturn?",
+    "type": "guardrail",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "sequence_of_returns_risk",
+      "behavioral_bias",
+      "macro_environment"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0284",
+    "query": "What factors should I consider when choosing between an ETF and a REIT for my kids' future?",
+    "type": "comparison",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance",
+      "time_horizon"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0285",
+    "query": "How do I compare the risk of investing in Bitcoin versus a conservative bond fund for my children's college savings?",
+    "type": "comparison",
+    "asset_class": "crypto",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_treasury_yields"
+    ],
+    "reasoning_axes": [
+      "volatility",
+      "risk_tolerance",
+      "time_horizon"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0286",
+    "query": "What are the potential tax implications of selling my children's college fund options before they mature?",
+    "type": "analysis",
+    "asset_class": "options",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "tax_implications",
+      "risk_tolerance"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0287",
+    "query": "Is it safer to invest in a diversified ETF or individual stocks for my kids' education fund?",
+    "type": "comparison",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "concentration_risk",
+      "liquidity_risk"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0288",
+    "query": "How should I adjust my investment strategy if I want to include cryptocurrencies for my children's future education?",
+    "type": "guardrail",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "time_horizon"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0289",
+    "query": "Can you analyze the performance of options in the current market compared to fixed income for long-term savings?",
+    "type": "analysis",
+    "asset_class": "options",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "interest_rate_sensitivity",
+      "sequence_of_returns_risk"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0290",
+    "query": "What are the risks of investing my children's college savings in a high-yield cryptocurrency right now?",
+    "type": "risk_assessment",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "liquidity_risk",
+      "geopolitical_risk"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0291",
+    "query": "How do I screen for the safest options to invest in for my kids' education that balance risk and growth?",
+    "type": "screening",
+    "asset_class": "options",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "risk_tolerance",
+      "dividend_safety"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0292",
+    "query": "Is it a good idea to invest a large portion of my children's college fund in speculative cryptocurrencies?",
+    "type": "guardrail",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "time_horizon"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0293",
+    "query": "What percentage of my children's college fund should I allocate to international equities to minimize risk?",
+    "type": "allocation",
+    "asset_class": "international_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance",
+      "time_horizon"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0294",
+    "query": "Can you explain how investing in commodities might affect the safety of my college fund?",
+    "type": "explanation",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "inflation_correlation",
+      "risk_tolerance"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0295",
+    "query": "I'm considering adding some international equities to my portfolio. What are the risks I should be aware of?",
+    "type": "risk_assessment",
+    "asset_class": "international_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "currency_risk",
+      "geopolitical_risk",
+      "diversification"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0296",
+    "query": "If I want to keep my college savings fund safe, should I avoid investing in commodities entirely?",
+    "type": "guardrail",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "diversification",
+      "volatility"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0297",
+    "query": "What are some international equities that have shown consistent growth over the past five years?",
+    "type": "screening",
+    "asset_class": "international_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "momentum",
+      "time_horizon"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0298",
+    "query": "How do I balance my college savings between fixed income and international equities to limit risk?",
+    "type": "allocation",
+    "asset_class": "international_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_treasury_yields"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0299",
+    "query": "Is it a good idea to invest in high-risk international stocks when saving for my kids' college?",
+    "type": "guardrail",
+    "asset_class": "international_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "time_horizon",
+      "sequence_of_returns_risk"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0300",
+    "query": "What are the best strategies for minimizing risk while investing in commodities for a college fund?",
+    "type": "risk_assessment",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "volatility",
+      "macro_environment"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0301",
+    "query": "Can you explain why investing in US equities might be a good idea for my children's college fund?",
+    "type": "explanation",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "growth",
+      "diversification",
+      "time_horizon"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0302",
+    "query": "What are the risks of investing in cryptocurrency instead of traditional stocks for a college fund?",
+    "type": "risk_assessment",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "liquidity_risk",
+      "risk_tolerance"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0303",
+    "query": "How does the performance of a diversified ETF compare to individual US stocks for long-term savings?",
+    "type": "comparison",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "screen_stocks"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "growth",
+      "macro_environment"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0304",
+    "query": "When is the best time to start investing in US equities for my children's college fund?",
+    "type": "timing",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "time_horizon",
+      "macro_environment"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0305",
+    "query": "I heard about a new crypto coin, should I invest a large portion of my college fund in it?",
+    "type": "guardrail",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "liquidity_risk",
+      "volatility"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0306",
+    "query": "What are the potential tax implications of selling my US stocks to invest in crypto?",
+    "type": "explanation",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "tax_implications",
+      "risk_tolerance"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0307",
+    "query": "Could you help me screen for stable stocks that pay dividends for my children's education fund?",
+    "type": "screening",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "dividend_safety",
+      "earnings_quality",
+      "debt_sustainability"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0308",
+    "query": "Is it too late to invest in crypto if I want to save for college in the next 10 years?",
+    "type": "timing",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "time_horizon",
+      "volatility"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0309",
+    "query": "Can you help me find some safe REITs to invest in for my kids' college fund?",
+    "type": "screening",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "diversification",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0310",
+    "query": "What are some low-risk fixed income investments that could provide stable income for my children's education?",
+    "type": "income_strategy",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "yield_curve_analysis",
+      "debt_sustainability"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0311",
+    "query": "How do I compare the stability of different REITs for my college savings plan?",
+    "type": "comparison",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_financial_ratios",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "volatility",
+      "dividend_safety",
+      "geopolitical_risk"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0312",
+    "query": "Is now a good time to invest in fixed income securities for future tuition costs?",
+    "type": "timing",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "macro_environment"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0313",
+    "query": "Can I invest in high-risk REITs and still expect to save for my kids' college fund?",
+    "type": "guardrail",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "sequence_of_returns_risk"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0314",
+    "query": "Should I put all my college savings into bond ETFs to avoid risks?",
+    "type": "guardrail",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "diversification"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0315",
+    "query": "What factors should I consider when choosing REITs for long-term stability?",
+    "type": "explanation",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "debt_sustainability",
+      "volatility"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0316",
+    "query": "Are there any fixed income options that also offer some growth potential for college savings?",
+    "type": "income_strategy",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "growth",
+      "inflation_correlation",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "risk-averse parent saving for children's college fund"
+  },
+  {
+    "id": "seed_0317",
+    "query": "How does investing in SPY compare to investing in individual tech stocks like AAPL and MSFT for my business?",
+    "type": "comparison",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "volatility",
+      "growth"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0318",
+    "query": "Can you analyze the performance of small-cap US equities versus large-cap equities in my area over the past year?",
+    "type": "analysis",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "performance",
+      "liquidity_risk",
+      "growth"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0319",
+    "query": "What are the tax implications if I decide to sell my ETFs now versus holding them for another year?",
+    "type": "explanation",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "tax_implications",
+      "time_horizon"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0320",
+    "query": "Is it safe to invest all my savings into a single high-growth stock right now?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "risk_tolerance"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0321",
+    "query": "Can you help me screen for ETFs that focus on sustainable energy and have low fees?",
+    "type": "screening",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "sector_rotation"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0322",
+    "query": "How can I analyze the volatility of my current equity investments compared to the broader market?",
+    "type": "analysis",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "volatility",
+      "correlation_analysis"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0323",
+    "query": "What would happen if I decided to borrow money to heavily invest in ETFs during a market downturn?",
+    "type": "guardrail",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "debt_sustainability",
+      "risk_tolerance"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0324",
+    "query": "Can you compare the recent performance trends of growth vs. value ETFs for small businesses like mine?",
+    "type": "comparison",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "momentum"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0325",
+    "query": "How should I allocate my irregular income between US equities and fixed income investments?",
+    "type": "allocation",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "screen_stocks"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance",
+      "time_horizon"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0326",
+    "query": "Can you help me screen for US equities that have low debt levels and consistent dividends?",
+    "type": "screening",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "debt_sustainability",
+      "dividend_safety",
+      "liquidity_risk"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0327",
+    "query": "What are some fixed income options that could provide stable returns for my business?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "inflation_correlation"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0328",
+    "query": "Is it a good idea to invest all my savings in a single high-growth US stock right now?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "risk_tolerance",
+      "market_overview"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0329",
+    "query": "What are the current Treasury yields, and how can I use them for my investment strategy?",
+    "type": "analysis",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_treasury_yields",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "macro_environment"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0330",
+    "query": "Are there any US equities that have shown consistent growth during economic downturns?",
+    "type": "screening",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_economic_indicators"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "volatility",
+      "macro_environment"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0331",
+    "query": "What fixed income securities should I be aware of that have high inflation risk right now?",
+    "type": "risk_assessment",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "inflation_correlation",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0332",
+    "query": "Can I take a loan against my business to invest in stocks? Is that a smart move?",
+    "type": "guardrail",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "debt_sustainability",
+      "risk_tolerance",
+      "sequence_of_returns_risk"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0333",
+    "query": "Can you explain how fixed income investments work for my small business?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "liquidity_risk",
+      "debt_sustainability"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0334",
+    "query": "What are the risks of investing in commodities like gold or oil for someone with irregular income?",
+    "type": "risk_assessment",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "geopolitical_risk",
+      "inflation_correlation"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0335",
+    "query": "How does the yield curve impact my decisions with fixed income options?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "macro_environment"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0336",
+    "query": "Should I invest in Treasury bonds or high-yield bonds considering my business's cash flow?",
+    "type": "comparison",
+    "asset_class": "fixed_income",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_treasury_yields",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "debt_sustainability",
+      "sequence_of_returns_risk"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0337",
+    "query": "Are commodities a smart investment for my small business, or is it too risky?",
+    "type": "risk_assessment",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "diversification",
+      "macro_environment"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0338",
+    "query": "I heard about some risky commodity investments, should I go all in on them?",
+    "type": "guardrail",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "liquidity_risk",
+      "geopolitical_risk"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0339",
+    "query": "Can I survive on fixed income investments alone if my business income fluctuates a lot?",
+    "type": "guardrail",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "sequence_of_returns_risk",
+      "risk_tolerance",
+      "debt_sustainability"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0340",
+    "query": "What are the best commodities to invest in right now if I want to hedge against inflation?",
+    "type": "screening",
+    "asset_class": "commodities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_economic_indicators"
+    ],
+    "reasoning_axes": [
+      "inflation_correlation",
+      "diversification",
+      "geopolitical_risk"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0341",
+    "query": "Can you help me understand how investing in REITs could provide a more consistent income for my business?",
+    "type": "income_strategy",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "income_strategy",
+      "risk_tolerance"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0342",
+    "query": "What are the best ETFs for small business owners looking for growth without too much risk?",
+    "type": "screening",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "risk_tolerance",
+      "diversification"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0343",
+    "query": "How do I know when it's the right time to sell my REIT investments?",
+    "type": "timing",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_financial_ratios",
+      "get_stock_quote"
+    ],
+    "reasoning_axes": [
+      "valuation",
+      "market_overview",
+      "economic_indicators"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0344",
+    "query": "I’m considering investing in some ETFs but I've heard they can be risky. Can you explain the potential risks?",
+    "type": "explanation",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "volatility",
+      "liquidity_risk"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0345",
+    "query": "What if I just put all my business profits into REITs this quarter? Is that a smart move?",
+    "type": "guardrail",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "concentration_risk",
+      "income_strategy"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0346",
+    "query": "Can you help me compare the dividend yields of different ETFs for my irregular income?",
+    "type": "comparison",
+    "asset_class": "etfs",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "dividend_safety",
+      "income_strategy",
+      "growth"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0347",
+    "query": "How often should I review my REIT investments to ensure they align with my business cash flow needs?",
+    "type": "timing",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "time_horizon",
+      "risk_tolerance",
+      "macro_environment"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0348",
+    "query": "If I invest in some high-risk ETFs, can I just take out loans to cover my business expenses until they pay off?",
+    "type": "guardrail",
+    "asset_class": "etfs",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "debt_sustainability",
+      "risk_tolerance",
+      "income_strategy"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0349",
+    "query": "How does Bitcoin perform compared to traditional stocks during economic downturns?",
+    "type": "comparison",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "macro_environment",
+      "volatility",
+      "growth"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0350",
+    "query": "Can you analyze the potential risks of investing in options for my small business income?",
+    "type": "risk_assessment",
+    "asset_class": "options",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "volatility",
+      "liquidity_risk"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0351",
+    "query": "I'm thinking about investing in ETH. What factors should I consider compared to Bitcoin?",
+    "type": "comparison",
+    "asset_class": "crypto",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "market_sentiment",
+      "volatility",
+      "growth"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0352",
+    "query": "What options strategies would you recommend for someone with unpredictable income?",
+    "type": "income_strategy",
+    "asset_class": "options",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_financial_ratios",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "liquidity_risk",
+      "debt_sustainability"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0353",
+    "query": "Is it wise to use my business savings to invest heavily in crypto?",
+    "type": "guardrail",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "risk_tolerance",
+      "liquidity_risk",
+      "sequence_of_returns_risk"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0354",
+    "query": "Can you help me screen for options that would benefit my business in a rising interest rate environment?",
+    "type": "screening",
+    "asset_class": "options",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_economic_indicators"
+    ],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "risk_tolerance",
+      "diversification"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0355",
+    "query": "What are the tax implications of trading options compared to holding cryptocurrency long-term?",
+    "type": "explanation",
+    "asset_class": "options",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "tax_implications",
+      "liquidity_risk",
+      "diversification"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0356",
+    "query": "I'd like to compare the volatility of my crypto investments to that of my business's equity. Can you help?",
+    "type": "comparison",
+    "asset_class": "crypto",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_stock_quote",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "volatility",
+      "diversification",
+      "correlation_analysis"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0357",
+    "query": "How should I allocate my business profits to international equities versus commodities this year?",
+    "type": "allocation",
+    "asset_class": "international_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_stock_quote"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance",
+      "macro_environment"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0358",
+    "query": "What are the risks of investing in commodities compared to international equities for someone with fluctuating income?",
+    "type": "risk_assessment",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "liquidity_risk",
+      "currency_risk"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0359",
+    "query": "Can you explain how international equities might help reduce my business's exposure to inflation?",
+    "type": "explanation",
+    "asset_class": "international_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "inflation_correlation",
+      "diversification"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0360",
+    "query": "Should I invest all my savings into a single commodity like gold? What are the risks?",
+    "type": "guardrail",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "liquidity_risk",
+      "risk_tolerance"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0361",
+    "query": "I'm considering using profits from my business to invest heavily in a foreign stock index. Is that a good idea?",
+    "type": "guardrail",
+    "asset_class": "international_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "geopolitical_risk",
+      "currency_risk",
+      "sequence_of_returns_risk"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0362",
+    "query": "How do I screen for international equities that are safe but also have high growth potential?",
+    "type": "screening",
+    "asset_class": "international_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "valuation",
+      "earnings_quality"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0363",
+    "query": "What should I consider when evaluating the risk of investing in commodities right now?",
+    "type": "risk_assessment",
+    "asset_class": "commodities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "volatility",
+      "macro_environment",
+      "interest_rate_sensitivity"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0364",
+    "query": "Can you help me allocate my irregular income into different asset classes to minimize risk?",
+    "type": "allocation",
+    "asset_class": "commodities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_economic_indicators"
+    ],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance",
+      "time_horizon"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0365",
+    "query": "Can you explain how investing in US equities could benefit my small business with irregular income?",
+    "type": "explanation",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "risk_tolerance",
+      "time_horizon"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0366",
+    "query": "What are the best times of the year for a small business owner like me to invest in crypto?",
+    "type": "timing",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "macro_environment",
+      "volatility"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0367",
+    "query": "How does investing in Bitcoin compare to investing in US stocks over the last five years?",
+    "type": "comparison",
+    "asset_class": "crypto",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "search_financial_news"
+    ],
+    "reasoning_axes": [
+      "growth",
+      "volatility",
+      "time_horizon"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0368",
+    "query": "Can you help me screen stocks that would provide steady income for my business during slow months?",
+    "type": "screening",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "dividend_safety",
+      "earnings_quality"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0369",
+    "query": "Is it wise for me to invest all my savings into a single cryptocurrency?",
+    "type": "guardrail",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "risk_tolerance"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0370",
+    "query": "When should I consider cashing out my equity investments to cover business expenses?",
+    "type": "timing",
+    "asset_class": "us_equities",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "liquidity_risk",
+      "time_horizon"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0371",
+    "query": "What are the potential tax implications if I sell my crypto holdings now?",
+    "type": "explanation",
+    "asset_class": "crypto",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "tax_implications",
+      "liquidity_risk"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0372",
+    "query": "Could you analyze how sector rotation might affect my investments in US equities this year?",
+    "type": "analysis",
+    "asset_class": "us_equities",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_economic_indicators",
+      "get_market_overview"
+    ],
+    "reasoning_axes": [
+      "sector_rotation",
+      "macro_environment"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0373",
+    "query": "Can you help me find some REITs that have a solid dividend history?",
+    "type": "screening",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "dividend_safety",
+      "yield_curve_analysis"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0374",
+    "query": "What fixed-income investments should I consider for a steady income flow given my unpredictable earnings?",
+    "type": "income_strategy",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "liquidity_risk"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0375",
+    "query": "Is it too risky for me to invest all my extra cash into a single REIT?",
+    "type": "guardrail",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "concentration_risk",
+      "risk_tolerance"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0376",
+    "query": "Can you explain how treasury yields affect my fixed-income investments?",
+    "type": "explanation",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "interest_rate_sensitivity",
+      "macro_environment"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0377",
+    "query": "What are some high-yield REITs that are good for someone with irregular income?",
+    "type": "screening",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "screen_stocks",
+      "get_financial_ratios"
+    ],
+    "reasoning_axes": [
+      "dividend_safety",
+      "yield_curve_analysis"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0378",
+    "query": "Should I consider diversifying into international fixed-income assets to balance my income?",
+    "type": "analysis",
+    "asset_class": "fixed_income",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "diversification",
+      "currency_risk"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0379",
+    "query": "If I invest in a mix of REITs and fixed-income products, how can I ensure a stable income?",
+    "type": "income_strategy",
+    "asset_class": "reits",
+    "complexity": "multi_tool",
+    "tools_expected": [
+      "get_market_overview",
+      "get_treasury_yields"
+    ],
+    "reasoning_axes": [
+      "macro_environment",
+      "risk_tolerance"
+    ],
+    "source_persona": "small business owner with irregular income"
+  },
+  {
+    "id": "seed_0380",
+    "query": "Is it safe for me to use leverage to invest in REITs given my business's cash flow?",
+    "type": "guardrail",
+    "asset_class": "reits",
+    "complexity": "single_step",
+    "tools_expected": [],
+    "reasoning_axes": [
+      "debt_sustainability",
+      "sequence_of_returns_risk"
+    ],
+    "source_persona": "small business owner with irregular income"
+  }
+]
