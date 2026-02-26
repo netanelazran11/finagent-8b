@@ -1,0 +1,16 @@
+{
+  "train_total": 608,
+  "val_total": 66,
+  "train_by_type": {
+    "tool": 396,
+    "cot": 133,
+    "guardrail": 79
+  },
+  "val_by_type": {
+    "cot": 14,
+    "guardrail": 8,
+    "tool": 44
+  },
+  "avg_messages_per_example": 6.1,
+  "approx_avg_assistant_tokens": 186
+}
