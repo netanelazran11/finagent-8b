@@ -80,6 +80,20 @@ def fix_tool_messages(messages: list[dict]) -> list[dict]:
     return messages
 
 
+def clean_empty_tool_calls(messages: list[dict]) -> list[dict]:
+    """Remove empty tool_calls fields from assistant messages.
+
+    Mistral's template checks 'tool_calls is not none' but an empty list []
+    is not none — so the message is NOT skipped during alternation checks,
+    breaking the user/assistant alternation validation.
+    """
+    for msg in messages:
+        if msg.get("role") == "assistant" and "tool_calls" in msg:
+            if not msg["tool_calls"]:  # empty list or None
+                del msg["tool_calls"]
+    return messages
+
+
 def merge_consecutive_assistants(messages: list[dict]) -> list[dict]:
     """Merge consecutive assistant messages into one.
 
@@ -133,7 +147,10 @@ def load_all_examples() -> list[dict]:
         # 2. Add 'name' field to tool responses
         fix_tool_messages(msgs)
 
-        # 3. Merge consecutive assistant messages
+        # 3. Remove empty tool_calls fields
+        clean_empty_tool_calls(msgs)
+
+        # 4. Merge consecutive assistant messages
         old_len = len(msgs)
         ex["messages"] = merge_consecutive_assistants(msgs)
         if len(ex["messages"]) != old_len:
