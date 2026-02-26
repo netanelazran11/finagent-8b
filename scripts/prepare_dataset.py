@@ -22,12 +22,41 @@ Output format:
 
 import json
 import random
+import string
 from pathlib import Path
 from collections import Counter
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RAW_DIR = PROJECT_ROOT / "data" / "raw"
 PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
+
+
+def fix_tool_call_ids(messages: list[dict]) -> list[dict]:
+    """Rewrite tool_call IDs to be alphanumeric, 9 chars (Mistral requirement).
+
+    Mistral v0.3's chat template enforces: alphanumeric, exactly 9 characters.
+    Our generated data uses 'call_001' style IDs which don't comply.
+    """
+    rng = random.Random(42)
+    id_map = {}  # old_id -> new_id
+
+    def make_id():
+        chars = string.ascii_letters + string.digits
+        return "".join(rng.choice(chars) for _ in range(9))
+
+    for msg in messages:
+        if msg.get("tool_calls"):
+            for tc in msg["tool_calls"]:
+                old_id = tc["id"]
+                if old_id not in id_map:
+                    id_map[old_id] = make_id()
+                tc["id"] = id_map[old_id]
+        if msg.get("role") == "tool" and msg.get("tool_call_id"):
+            old_id = msg["tool_call_id"]
+            if old_id in id_map:
+                msg["tool_call_id"] = id_map[old_id]
+
+    return messages
 
 
 def load_all_examples() -> list[dict]:
@@ -41,6 +70,18 @@ def load_all_examples() -> list[dict]:
                     examples.append(json.loads(line))
 
     print(f"Loaded {len(examples)} total examples")
+
+    # Fix tool_call IDs for Mistral v0.3 compatibility
+    fixed = 0
+    for ex in examples:
+        for msg in ex["messages"]:
+            if msg.get("tool_calls"):
+                fix_tool_call_ids(ex["messages"])
+                fixed += 1
+                break
+    if fixed:
+        print(f"Fixed tool_call IDs in {fixed} examples (Mistral 9-char alphanumeric)")
+
     return examples
 
 
