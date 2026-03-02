@@ -4,9 +4,7 @@
 # =====================================================================
 #
 # HOW TO USE:
-#   sbatch scripts/slurm_train.sh                           # basic run
-#   sbatch scripts/slurm_train.sh --use_wandb               # with W&B tracking
-#   sbatch scripts/slurm_train.sh --push_to_hub --use_wandb # full pipeline
+#   sbatch scripts/slurm_train.sh
 #
 # MONITOR:
 #   squeue -u $USER                      # check job status
@@ -95,14 +93,12 @@ else
     echo "  [!] No .env found — W&B and HF push won't work"
 fi
 
-# Launch training
-# "$@" passes through extra flags from the sbatch command line:
-#   sbatch scripts/slurm_train.sh --use_wandb --skip_tests
+# Launch training with W&B enabled
 python3 -u "$PROJECT_DIR/scripts/train_qlora.py" \
     --output_dir "$PROJECT_DIR/results/finagent-checkpoints" \
     --adapter_path "$PROJECT_DIR/results/finagent-7b-lora" \
     --merged_path "$PROJECT_DIR/results/finagent-7b-merged" \
-    "$@"
+    --use_wandb
 
 # ── 5. Done ─────────────────────────────────────────────────────────
 echo ""
