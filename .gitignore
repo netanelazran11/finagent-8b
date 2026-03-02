@@ -4,3 +4,8 @@ __pycache__/
 data/raw/
 .distilabel/
 .idea/
+logs/
+results/
+finagent-checkpoints/
+finagent-7b-lora/
+finagent-7b-merged/
