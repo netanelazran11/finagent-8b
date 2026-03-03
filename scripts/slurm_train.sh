@@ -36,8 +36,8 @@ set -euo pipefail
 
 # ── Paths (adapt to your cluster) ──────────────────────────────────
 LAB_DIR="/sci/labs/arieljaffe/dan.abergel1"
-PROJECT_DIR="$LAB_DIR/finagent-8b"
-VENV_DIR="$LAB_DIR/finagent_env"
+PROJECT_DIR="$LAB_DIR/repos/finagent/finagent-8b"
+VENV_DIR="$LAB_DIR/repos/finagent/finagent_env"
 
 echo "============================================================"
 echo "  FinAgent QLoRA — SLURM Job"
