@@ -39,6 +39,16 @@ LAB_DIR="/sci/labs/arieljaffe/dan.abergel1"
 PROJECT_DIR="$LAB_DIR/repos/finagent-8b"
 VENV_DIR="$LAB_DIR/torch_env"
 
+# ── Redirect caches to lab storage ─────────────────────────────────
+# By default, pip/HuggingFace/torch cache to ~/.cache (on /dev/sda3,
+# which has only 5 GB quota). We redirect everything to the lab
+# filesystem which has ~16 TB of space.
+export HF_HOME="$LAB_DIR/cache/huggingface"
+export HUGGINGFACE_HUB_CACHE="$LAB_DIR/cache/huggingface/hub"
+export TMPDIR="$LAB_DIR/tmp"
+export PIP_CACHE_DIR="$LAB_DIR/cache/pip"
+mkdir -p "$HF_HOME" "$HUGGINGFACE_HUB_CACHE" "$TMPDIR" "$PIP_CACHE_DIR"
+
 echo "============================================================"
 echo "  FinAgent QLoRA — SLURM Job"
 echo "============================================================"
