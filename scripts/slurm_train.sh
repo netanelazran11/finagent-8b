@@ -73,7 +73,7 @@ echo ""
 # Verify we got a GPU. The Python script auto-detects GPU type
 # and adjusts precision (bf16 vs fp16) accordingly.
 echo "[3/5] GPU check ..."
-nvidia-smi
+python3 -c "import torch; print(f'  GPU: {torch.cuda.get_device_name(0)}'); print(f'  VRAM: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB')"
 echo ""
 
 # ── 4. Load .env and run training ──────────────────────────────────
