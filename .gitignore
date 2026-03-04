@@ -9,3 +9,4 @@ results/
 finagent-checkpoints/
 finagent-7b-lora/
 finagent-7b-merged/
+.av_cache.json
