@@ -1,0 +1,171 @@
+wandb: Detected [huggingface_hub.inference] in use.
+wandb: Use W&B Weave for improved LLM call tracing. Install Weave with `pip install weave` then add `import weave` to the top of your script.
+wandb: For more information, check out the docs at: https://weave-docs.wandb.ai/
+wandb: WARNING The get_url method is deprecated and will be removed in a future release. Please use `run.url` instead.
+    W&B run: https://wandb.ai/danabergel1995-hebrew-university-of-jerusalem/finagent-7b/runs/96for5s6
+
+[Step 6] Configure SFTTrainer
+    Epochs:              3
+    Per-GPU batch size:  8
+    Gradient accum:      2
+    Effective batch:     16 (batch_size * grad_accum)
+    Estimated steps:     ~114
+    Warmup steps:        ~11 (10% of total)
+    Learning rate:       0.0002 (cosine decay after warmup)
+    Precision:           bfloat16
+    Optimizer:           AdamW 8-bit (saves VRAM vs full AdamW)
+Unsloth: We found double BOS tokens - we shall remove one automatically.
+Unsloth: Tokenizing ["None"] (num_proc=64): 100%|██████████| 608/608 [00:02<00:00, 262.44 examples/s]
+Unsloth: We found double BOS tokens - we shall remove one automatically.
+Unsloth: Tokenizing ["None"] (num_proc=64): 100%|██████████| 66/66 [00:02<00:00, 31.72 examples/s]
+🦥 Unsloth: Padding-free auto-enabled, enabling faster training.
+    Trainer created successfully
+
+[Step 7] Training started
+============================================================
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 1
+   \\   /|    Num examples = 608 | Num Epochs = 3 | Total steps = 114
+O^O/ \_/ \    Batch size per device = 8 | Gradient accumulation steps = 2
+\        /    Data Parallel GPUs = 1 | Total batch size (8 x 2 x 1) = 16
+ "-____-"     Trainable parameters = 83,886,080 of 7,331,909,632 (1.14% trained)
+  0%|          | 0/114 [00:00<?, ?it/s]Traceback (most recent call last):
+Unsloth: Will smartly offload gradients to save VRAM!
+  File "/sci/labs/arieljaffe/dan.abergel1/repos/finagent-8b/scripts/train_qlora.py", line 828, in <module>
+    main()
+  File "/sci/labs/arieljaffe/dan.abergel1/repos/finagent-8b/scripts/train_qlora.py", line 754, in main
+    trainer_stats = trainer.train()
+                    ^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/repos/finagent-8b/unsloth_compiled_cache/UnslothSFTTrainer.py", line 66, in wrapper
+    output = f(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/transformers/trainer.py", line 2325, in train
+    return inner_training_loop(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 330, in _fast_inner_training_loop
+  File "/sci/labs/arieljaffe/dan.abergel1/repos/finagent-8b/unsloth_compiled_cache/UnslothSFTTrainer.py", line 1267, in training_step
+    return super().training_step(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 40, in _unsloth_training_step
+  File "/sci/labs/arieljaffe/dan.abergel1/repos/finagent-8b/unsloth_compiled_cache/UnslothSFTTrainer.py", line 1256, in compute_loss
+    outputs = super().compute_loss(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/unsloth/models/_utils.py", line 1830, in _unsloth_pre_compute_loss
+    outputs = self._old_compute_loss(model, inputs, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 36, in compute_loss
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/accelerate/utils/operations.py", line 819, in forward
+    return model_forward(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/accelerate/utils/operations.py", line 807, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/torch/_compile.py", line 54, in inner
+    return disable_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1181, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/unsloth/models/llama.py", line 1576, in PeftModel_fast_forward
+    return self.base_model(
+           ^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/peft/tuners/tuners_utils.py", line 311, in forward
+    return self.model.forward(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/unsloth/models/mistral.py", line 257, in MistralForCausalLM_fast_forward
+    outputs = self.model(
+              ^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/unsloth/models/llama.py", line 1157, in LlamaModel_fast_forward
+    layer_outputs = decoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/transformers/modeling_layers.py", line 93, in __call__
+    return self._gradient_checkpointing_func(partial(super().__call__, **kwargs), *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/torch/_compile.py", line 54, in inner
+    return disable_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1181, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/torch/utils/checkpoint.py", line 505, in checkpoint
+    return CheckpointFunction.apply(function, preserve, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/torch/autograd/function.py", line 583, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/unsloth_zoo/gradient_checkpointing.py", line 498, in forward
+    outputs = run_function(*args)
+              ^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/unsloth/models/llama.py", line 767, in LlamaDecoderLayer_fast_forward
+    hidden_states = fast_rms_layernorm(self.input_layernorm, hidden_states)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1181, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/unsloth/kernels/rms_layernorm.py", line 242, in fast_rms_layernorm
+    out = Fast_RMS_Layernorm.apply(X, W, eps, gemma)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/torch/autograd/function.py", line 583, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/unsloth/kernels/rms_layernorm.py", line 177, in forward
+    fx[(n_rows,)](
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/triton/runtime/jit.py", line 370, in <lambda>
+    return lambda *args, **kwargs: self.run(grid=grid, warmup=False, *args, **kwargs)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/triton/runtime/jit.py", line 700, in run
+    device = driver.active.get_current_device()
+             ^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/triton/runtime/driver.py", line 28, in active
+    self._active = self.default
+                   ^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/triton/runtime/driver.py", line 22, in default
+    self._default = _create_driver()
+                    ^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/triton/runtime/driver.py", line 10, in _create_driver
+    return active_drivers[0]()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/triton/backends/nvidia/driver.py", line 720, in __init__
+    self.utils = CudaUtils()  # TODO: make static
+                 ^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/triton/backends/nvidia/driver.py", line 62, in __init__
+    mod = compile_module_from_src(
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/triton/runtime/build.py", line 78, in compile_module_from_src
+    cache = get_cache_manager(key)
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/triton/runtime/cache.py", line 248, in get_cache_manager
+    return cls(_base32(key))
+           ^^^^^^^^^^^^^^^^^
+  File "/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/triton/runtime/cache.py", line 55, in __init__
+    os.makedirs(self.cache_dir, exist_ok=True)
+  File "<frozen os>", line 215, in makedirs
+  File "<frozen os>", line 215, in makedirs
+  File "<frozen os>", line 225, in makedirs
+OSError: [Errno 28] No space left on device: '/sci/home/dan.abergel1/.triton'

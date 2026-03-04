@@ -1,0 +1,71 @@
+wandb: Detected [huggingface_hub.inference] in use.
+wandb: Use W&B Weave for improved LLM call tracing. Install Weave with `pip install weave` then add `import weave` to the top of your script.
+wandb: For more information, check out the docs at: https://weave-docs.wandb.ai/
+wandb: WARNING The get_url method is deprecated and will be removed in a future release. Please use `run.url` instead.
+    W&B run: https://wandb.ai/danabergel1995-hebrew-university-of-jerusalem/finagent-7b/runs/i57eopry
+
+[Step 6] Configure SFTTrainer
+    Epochs:              3
+    Per-GPU batch size:  8
+    Gradient accum:      2
+    Effective batch:     16 (batch_size * grad_accum)
+    Estimated steps:     ~114
+    Warmup steps:        ~11 (10% of total)
+    Learning rate:       0.0002 (cosine decay after warmup)
+    Precision:           bfloat16
+    Optimizer:           AdamW 8-bit (saves VRAM vs full AdamW)
+Unsloth: We found double BOS tokens - we shall remove one automatically.
+Unsloth: Tokenizing ["None"] (num_proc=64): 100%|██████████| 608/608 [00:02<00:00, 248.76 examples/s]
+Unsloth: We found double BOS tokens - we shall remove one automatically.
+Unsloth: Tokenizing ["None"] (num_proc=64): 100%|██████████| 66/66 [00:02<00:00, 32.16 examples/s]
+🦥 Unsloth: Padding-free auto-enabled, enabling faster training.
+    Trainer created successfully
+
+[Step 7] Training started
+============================================================
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 1
+   \\   /|    Num examples = 608 | Num Epochs = 3 | Total steps = 114
+O^O/ \_/ \    Batch size per device = 8 | Gradient accumulation steps = 2
+\        /    Data Parallel GPUs = 1 | Total batch size (8 x 2 x 1) = 16
+ "-____-"     Trainable parameters = 83,886,080 of 7,331,909,632 (1.14% trained)
+ 18%|█▊        | 20/114 [02:20<07:09,  4.57s/it]Unsloth: Not an error, but MistralForCausalLM does not accept `num_items_in_batch`.
+Unsloth: Will smartly offload gradients to save VRAM!
+{'loss': 1.3585, 'grad_norm': 2.574605703353882, 'learning_rate': 6.666666666666667e-05, 'epoch': 0.13}
+{'loss': 0.8767, 'grad_norm': 1.988318681716919, 'learning_rate': 0.00015000000000000001, 'epoch': 0.26}
+{'loss': 0.73, 'grad_norm': 0.9112038612365723, 'learning_rate': 0.00019981033287370443, 'epoch': 0.39}
+{'loss': 0.5675, 'grad_norm': 0.7406105399131775, 'learning_rate': 0.0001976848317759601, 'epoch': 0.53}
+Using gradient accumulation will be very slightly less accurate.
+Read more on gradient accumulation issues here: https://unsloth.ai/blog/gradient
+ 35%|███▌      | 40/114 [04:00<05:35,  4.53s//sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/peft/utils/other.py:1394: UserWarning: Unable to fetch remote file due to the following error (ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: f5cf7c10-5ad4-4d14-af13-bf9505ee7a2f)') - silently ignoring the lookup for the file config.json in unsloth/mistral-7b-instruct-v0.3-bnb-4bit.
+  warnings.warn(                             
+{'eval_loss': 0.5705369114875793, 'eval_runtime': 6.6607, 'eval_samples_per_second': 9.909, 'eval_steps_per_second': 1.351, 'epoch': 0.53}
+{'loss': 0.5866, 'grad_norm': 0.9027879238128662, 'learning_rate': 0.00019324722294043558, 'epoch': 0.66}
+{'loss': 0.5438, 'grad_norm': 0.6531579494476318, 'learning_rate': 0.00018660254037844388, 'epoch': 0.79}
+{'loss': 0.5621, 'grad_norm': 0.6503310203552246, 'learning_rate': 0.00017790805745256704, 'epoch': 0.92}
+{'loss': 0.4537, 'grad_norm': 0.520693302154541, 'learning_rate': 0.00016736956436465573, 'epoch': 1.05}
+{'eval_loss': 0.5243440866470337, 'eval_runtime': 5.5592, 'eval_samples_per_second': 11.872, 'eval_steps_per_second': 1.619, 'epoch': 1.05}
+/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/peft/utils/save_and_load.py:295: UserWarning: Could not find a config file in unsloth/mistral-7b-instruct-v0.3-bnb-4bit - will assume that the vocabulary was not modified.
+  warnings.warn(
+100%|██████████| 114/114 [09:56<00:00,  4.62s/it]/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/peft/utils/other.py:1394: UserWarning: Unable to fetch remote file due to the following error (ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 1eeada16-6b63-41af-8e5e-7811c1135555)') - silently ignoring the lookup for the file config.json in unsloth/mistral-7b-instruct-v0.3-bnb-4bit.
+{'loss': 0.3882, 'grad_norm': 0.6271637678146362, 'learning_rate': 0.0001552364972960506, 'epoch': 1.18}
+{'loss': 0.3761, 'grad_norm': 0.7476024627685547, 'learning_rate': 0.00014179603448867835, 'epoch': 1.32}
+{'loss': 0.3621, 'grad_norm': 0.6250203251838684, 'learning_rate': 0.0001273662990072083, 'epoch': 1.45}
+{'loss': 0.3911, 'grad_norm': 0.6705314517021179, 'learning_rate': 0.00011228882906647142, 'epoch': 1.58}
+  warnings.warn(                             
+{'eval_loss': 0.5062234401702881, 'eval_runtime': 5.5525, 'eval_samples_per_second': 11.887, 'eval_steps_per_second': 1.621, 'epoch': 1.58}
+{'loss': 0.3581, 'grad_norm': 0.5995916724205017, 'learning_rate': 9.692049414438299e-05, 'epoch': 1.71}
+{'loss': 0.3835, 'grad_norm': 0.49017173051834106, 'learning_rate': 8.162504821834295e-05, 'epoch': 1.84}
+{'loss': 0.3819, 'grad_norm': 0.5605926513671875, 'learning_rate': 6.676452005203406e-05, 'epoch': 1.97}
+{'loss': 0.2804, 'grad_norm': 0.5489842295646667, 'learning_rate': 5.269064431639901e-05, 'epoch': 2.11}
+{'eval_loss': 0.5216277837753296, 'eval_runtime': 5.5873, 'eval_samples_per_second': 11.812, 'eval_steps_per_second': 1.611, 'epoch': 2.11}
+{'loss': 0.2448, 'grad_norm': 0.7138407230377197, 'learning_rate': 3.973653636207437e-05, 'epoch': 2.24}
+{'loss': 0.2388, 'grad_norm': 0.6410075426101685, 'learning_rate': 2.8208807693555818e-05, 'epoch': 2.37}
+{'loss': 0.2339, 'grad_norm': 0.5442358255386353, 'learning_rate': 1.8380308764377842e-05, 'epoch': 2.5}
+{'loss': 0.2357, 'grad_norm': 0.6306524872779846, 'learning_rate': 1.0483670864493778e-05, 'epoch': 2.63}
+{'eval_loss': 0.5243145227432251, 'eval_runtime': 5.5914, 'eval_samples_per_second': 11.804, 'eval_steps_per_second': 1.61, 'epoch': 2.63}
+{'loss': 0.2336, 'grad_norm': 0.6025937795639038, 'learning_rate': 4.705799957284351e-06, 'epoch': 2.76}
+{'loss': 0.2269, 'grad_norm': 0.6526948809623718, 'learning_rate': 1.1834527918740623e-06, 'epoch': 2.89}
+/sci/labs/arieljaffe/dan.abergel1/torch_env/lib/python3.11/site-packages/peft/utils/save_and_load.py:295: UserWarning: Could not find a config file in unsloth/mistral-7b-instruct-v0.3-bnb-4bit - will assume that the vocabulary was not modified.
+  warnings.warn(
+100%|██████████| 114/114 [10:08<00:00,  5.34s/it]
+{'train_runtime': 608.3018, 'train_samples_per_second': 2.999, 'train_steps_per_second': 0.187, 'train_loss': 0.4471273286300793, 'epoch': 3.0}

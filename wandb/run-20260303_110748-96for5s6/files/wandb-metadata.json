@@ -1,0 +1,84 @@
+{
+  "os":  "Linux-6.12.32-aufs-1-x86_64-with-glibc2.36",
+  "python":  "CPython 3.11.2",
+  "startedAt":  "2026-03-03T09:07:48.659383Z",
+  "args":  [
+    "--output_dir",
+    "/sci/labs/arieljaffe/dan.abergel1/repos/finagent-8b/results/finagent-checkpoints",
+    "--adapter_path",
+    "/sci/labs/arieljaffe/dan.abergel1/repos/finagent-8b/results/finagent-7b-lora",
+    "--merged_path",
+    "/sci/labs/arieljaffe/dan.abergel1/repos/finagent-8b/results/finagent-7b-merged",
+    "--use_wandb"
+  ],
+  "program":  "/sci/labs/arieljaffe/dan.abergel1/repos/finagent-8b/scripts/train_qlora.py",
+  "codePath":  "scripts/train_qlora.py",
+  "codePathLocal":  "scripts/train_qlora.py",
+  "git":  {
+    "remote":  "https://github.com/DanAbergel/finagent-8b.git",
+    "commit":  "178c819a233ec9e8457ddc8541d899ef5b6f14c5"
+  },
+  "email":  "danabergel1995@gmail.com",
+  "root":  "/sci/labs/arieljaffe/dan.abergel1/repos/finagent-8b",
+  "host":  "salmon-01",
+  "executable":  "/sci/labs/arieljaffe/dan.abergel1/torch_env/bin/python3",
+  "cpu_count":  64,
+  "cpu_count_logical":  64,
+  "gpu":  "NVIDIA L40S",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "109951162777600",
+      "used":  "80953155256320"
+    }
+  },
+  "memory":  {
+    "total":  "1623069503488"
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA L40S",
+      "memoryTotal":  "48305799168",
+      "cudaCores":  18176,
+      "architecture":  "Ada",
+      "uuid":  "GPU-cd8db75b-9586-0d6d-396c-2888fb7f2b9e"
+    }
+  ],
+  "cudaVersion":  "13.0",
+  "slurm":  {
+    "cluster_name":  "moriah",
+    "conf":  "/vol/slurm/moriah/slurm.conf",
+    "cpus_on_node":  "8",
+    "cpus_per_task":  "8",
+    "gtids":  "0",
+    "job_account":  "arieljaffe",
+    "job_cpus_per_node":  "8",
+    "job_gid":  "925",
+    "job_gpus":  "1",
+    "job_id":  "44217598",
+    "job_name":  "finagent-qlora",
+    "job_nodelist":  "salmon-01",
+    "job_num_nodes":  "1",
+    "job_partition":  "salmon",
+    "job_qos":  "normal",
+    "job_uid":  "212795",
+    "job_user":  "dan.abergel1",
+    "jobid":  "44217598",
+    "localid":  "0",
+    "mem_per_node":  "65536",
+    "nnodes":  "1",
+    "node_aliases":  "(null)",
+    "nodeid":  "0",
+    "nodelist":  "salmon-01",
+    "prio_process":  "0",
+    "procid":  "0",
+    "submit_dir":  "/sci/labs/arieljaffe/dan.abergel1/repos/finagent-8b",
+    "submit_host":  "moriah-gw-02",
+    "task_pid":  "53845",
+    "tasks_per_node":  "1",
+    "topology_addr":  "salmon-01",
+    "topology_addr_pattern":  "node",
+    "working_cluster":  "moriah:slurmctl-01:6840:9216:109"
+  },
+  "writerId":  "rhacqqjlw3bmhz10dmxswdh8upcg5q9e"
+}
