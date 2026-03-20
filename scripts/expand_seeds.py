@@ -294,10 +294,10 @@ def main():
 
     print(f"\n{'=' * 60}")
     print(f"Generated {len(all_seeds)} valid seeds → {output_path}")
-    print(f"\nType distribution:")
+    print("\nType distribution:")
     for t, c in sorted(type_dist.items(), key=lambda x: -x[1]):
         print(f"  {t}: {c}")
-    print(f"\nAsset class distribution:")
+    print("\nAsset class distribution:")
     for a, c in sorted(asset_dist.items(), key=lambda x: -x[1]):
         print(f"  {a}: {c}")
     print(f"{'=' * 60}")

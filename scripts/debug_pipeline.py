@@ -1,9 +1,8 @@
 """Quick debug script to inspect what Distilabel actually returns."""
-import json
-import sys
 from pathlib import Path
 
 from dotenv import load_dotenv
+
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
 from distilabel.models import OpenAILLM

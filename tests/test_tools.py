@@ -5,29 +5,23 @@ Tests use mocked API responses so they run without network access or API keys.
 Run: python -m pytest tests/test_tools.py -v
 """
 
-import json
-import pytest
-from unittest.mock import patch, MagicMock
-
 import sys
 from pathlib import Path
+from unittest.mock import patch
+
 sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
 
 from tools import (
+    TOOL_REGISTRY,
     _to_number,
-    get_stock_quote,
+    get_economic_indicators,
     get_financial_ratios,
-    search_financial_news,
     get_market_overview,
+    get_stock_quote,
     get_treasury_yields,
     screen_stocks,
-    get_economic_indicators,
-    TOOL_REGISTRY,
-    RATIO_MAP,
-    ECONOMIC_DATA,
-    SECTOR_TICKERS,
+    search_financial_news,
 )
-
 
 # ── Mock data ────────────────────────────────────────────────────────
 

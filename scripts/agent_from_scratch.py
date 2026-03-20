@@ -18,20 +18,21 @@ Usage:
 """
 
 import json
+import logging
 import sys
 from pathlib import Path
-
-import torch.cuda
 
 # Add project root to path so we can import tools and configs
 sys.path.insert(0, str(Path(__file__).parent.parent))
 sys.path.insert(0, str(Path(__file__).parent))
 
 from tools import TOOL_REGISTRY
-from configs.prompt_templates import SYSTEM_PROMPT
 from unsloth import FastLanguageModel
 
-model_device = "cuda" if torch.cuda.is_available() else "cpu"
+from configs.prompt_templates import SYSTEM_PROMPT
+
+logging.basicConfig(level=logging.INFO, format="%(message)s")
+log = logging.getLogger("finagent.scratch")
 
 # =====================================================================
 # STEP 1: load_model
@@ -52,15 +53,16 @@ model_device = "cuda" if torch.cuda.is_available() else "cpu"
 # Note: load_in_4bit=True loads the model quantized (~4 GB instead of ~14 GB)
 # =====================================================================
 
+
 def load_model(path: str):
-    # TODO: implement
-    model , tokenizer = FastLanguageModel.from_pretrained(model_name=path,
-                                                          device=model_device,
-                                                          max_seq_length=4096,
-                                                          load_in_4bit=True,
-                                                          dtype=None)
+    model, tokenizer = FastLanguageModel.from_pretrained(
+        model_name=path,
+        max_seq_length=4096,
+        load_in_4bit=True,
+        dtype=None,
+    )
     FastLanguageModel.for_inference(model)
-    return model,tokenizer
+    return model, tokenizer
 
 
 # =====================================================================
@@ -88,16 +90,23 @@ def load_model(path: str):
 #   4. Return the decoded string
 # =====================================================================
 
+
 def generate(model, tokenizer, messages: list[dict]) -> str:
-    # TODO: implement
-    chat_template = tokenizer.apply_chat_generation_template(messages,tokenize=True,add_gemeration_prompt=True,return_tensors="pt").to(device=model_device)
-    response = model.generate(chat_template,
-                   max_new_tokens=1024,
-                   temperature=0.7,
-                   top_p=0.9,
-                   do_sample=True)
-    decoded = tokenizer.decode(response[0][chat_template.shape[1]:], skip_special_tokens=False)
-    return decoded
+    inputs = tokenizer.apply_chat_template(
+        messages,
+        tokenize=True,
+        add_generation_prompt=True,
+        return_tensors="pt",
+    ).to(model.device)
+
+    outputs = model.generate(
+        input_ids=inputs,
+        max_new_tokens=1024,
+        temperature=0.7,
+        top_p=0.9,
+        do_sample=True,
+    )
+    return tokenizer.decode(outputs[0][inputs.shape[1] :], skip_special_tokens=False)
 
 
 # =====================================================================
@@ -127,9 +136,37 @@ def generate(model, tokenizer, messages: list[dict]) -> str:
 #   Also check for '"tool_calls"' in the text as a fallback.
 # =====================================================================
 
+
+def find_end_tools(json_str: str) -> int:
+    depth, end = 0, 0
+    for i, ch in enumerate(json_str):
+        if ch == "[":
+            depth += 1
+        elif ch == "]":
+            depth -= 1
+            if depth == 0:
+                end = i + 1
+                break
+    return end
+
+
 def parse_tool_calls(text: str) -> list[dict]:
-    # TODO: implement
-    pass
+    try:
+        if "[TOOL_CALLS]" not in text:
+            return []
+        json_str = text.split("[TOOL_CALLS]")[1].strip()
+        end = find_end_tools(json_str)
+        if end == 0:
+            return []
+        parsed = json.loads(json_str[:end])
+        for element in parsed:
+            if "arguments" in element and type(element.get("arguments")) is str:
+                to_parse = element.get("arguments")
+                element["arguments"] = json.loads(to_parse)
+        return parsed
+    except Exception as e:
+        print(e)
+        return []
 
 
 # =====================================================================
@@ -157,9 +194,21 @@ def parse_tool_calls(text: str) -> list[dict]:
 #      "[Iter N] Executing get_stock_quote(ticker='AAPL') → {"price": 264.72, ...}"
 # =====================================================================
 
+
 def execute_tools(tool_calls: list[dict]) -> list[dict]:
-    # TODO: implement
-    pass
+    results = []
+    for call in tool_calls:
+        name = call.get("name")
+        args = call.get("arguments") or {}
+        if name not in TOOL_REGISTRY:
+            results.append({"name": name, "result": {"error": f"Unknown tool: {name}"}})
+            continue
+        try:
+            value = TOOL_REGISTRY[name](**args)
+            results.append({"name": name, "result": value})
+        except Exception as e:
+            results.append({"name": name, "result": {"error": str(e)}})
+    return results
 
 
 # =====================================================================
@@ -199,16 +248,39 @@ def execute_tools(tool_calls: list[dict]) -> list[dict]:
 #   [Iter 2] Final response (no more tool calls)
 # =====================================================================
 
+
 def react_loop(model, tokenizer, user_query: str, max_iterations: int = 5) -> str:
-    # TODO: implement
-    pass
+    messages = [
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": user_query},
+    ]
+
+    for i in range(max_iterations):
+        print(f"  [Iter {i + 1}] Sending {len(messages)} messages to model...")
+        response = generate(model, tokenizer, messages)
+        tool_calls = parse_tool_calls(response)
+
+        if not tool_calls:
+            print(f"  [Iter {i + 1}] Final response (no tool calls)")
+            return response
+
+        print(
+            f"  [Iter {i + 1}] Model wants {len(tool_calls)} tool(s): {', '.join(tc['name'] for tc in tool_calls)}"
+        )
+        messages.append({"role": "assistant", "content": response})
+
+        results = execute_tools(tool_calls)
+        for r in results:
+            messages.append({"role": "tool", "name": r["name"], "content": json.dumps(r["result"])})
+
+    return response + "\n\n[WARNING: max iterations reached]"
 
 
 # =====================================================================
 # Config — change these defaults, no CLI args needed
 # =====================================================================
 
-MODEL_PATH = "danab17/finagent-7b-merged"       # HuggingFace ID or local path
+MODEL_PATH = "danab17/finagent-7b-merged"  # HuggingFace ID or local path
 DEFAULT_QUERY = "What is Apple's current P/E ratio?"  # set to None for interactive mode
 MAX_ITERATIONS = 5
 
@@ -220,6 +292,7 @@ MAX_ITERATIONS = 5
 # - If DEFAULT_QUERY is set → runs that query and exits
 # - If DEFAULT_QUERY is None → interactive mode (type questions, Ctrl+C to quit)
 # =====================================================================
+
 
 def main():
     print("=" * 60)

@@ -23,8 +23,8 @@ Output format:
 import json
 import random
 import string
-from pathlib import Path
 from collections import Counter
+from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RAW_DIR = PROJECT_ROOT / "data" / "raw"
@@ -187,7 +187,7 @@ def stratified_split(
 
     train, val = [], []
 
-    for gen_type, type_examples in by_type.items():
+    for _gen_type, type_examples in by_type.items():
         random.shuffle(type_examples)
         n_val = max(1, int(len(type_examples) * val_ratio))
         val.extend(type_examples[:n_val])

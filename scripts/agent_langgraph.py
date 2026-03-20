@@ -20,17 +20,18 @@ import json
 import operator
 import sys
 from pathlib import Path
-from typing import TypedDict, Annotated
+from typing import Annotated, TypedDict
 
 import torch
+from langgraph.graph import END, StateGraph
 from unsloth import FastLanguageModel
-from langgraph.graph import StateGraph, END
 
 # Add project root to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 sys.path.insert(0, str(Path(__file__).parent))
 
 from tools import TOOL_REGISTRY
+
 from configs.prompt_templates import SYSTEM_PROMPT
 
 model_device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -174,7 +175,7 @@ def make_generate_node(model, tokenizer):
             tool_names = [tc["name"] for tc in tool_calls]
             print(f"  [generate] Model wants {len(tool_calls)} tool(s): {', '.join(tool_names)}")
         else:
-            print(f"  [generate] Final response (no tool calls)")
+            print("  [generate] Final response (no tool calls)")
 
         # Build assistant message
         # We store tool_calls in the message so should_continue() and

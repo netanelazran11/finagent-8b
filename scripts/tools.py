@@ -8,13 +8,17 @@ Both agents (from_scratch and langgraph) import TOOL_REGISTRY for dispatch:
 """
 
 import json
+import logging
 import os
+import re
 import time
-import traceback
-import requests
 from datetime import datetime, timedelta
 from pathlib import Path
+
+import requests
 from dotenv import load_dotenv
+
+log = logging.getLogger("finagent.tools")
 
 load_dotenv(dotenv_path=Path(__file__).parent.parent / ".env", verbose=True)
 
@@ -31,7 +35,7 @@ def _load_cache() -> dict:
     if not _cache_file.exists() or _cache_file.stat().st_size == 0:
         return {}
     try:
-        with open(_cache_file, "r") as f:
+        with open(_cache_file) as f:
             return json.load(f)
     except json.JSONDecodeError:
         return {}
@@ -43,25 +47,38 @@ def _save_cache(cache: dict):
 
 
 def fetch_alpha_vantage(function: str, symbol: str = "", **extra_params) -> dict:
-    """Call Alpha Vantage API with file-based cache.
-    Cleans numbered key prefixes ("01. symbol" → "symbol").
-    Does NOT cache error responses (rate limit, invalid key, etc.).
+    """Call Alpha Vantage API with a 60-minute file cache.
+
+    - Cleans "01. symbol" prefixes that Alpha Vantage adds to nested dicts.
+    - Does NOT cache error responses (rate-limit, invalid key, etc.).
+    - Retries once on transient request failures.
     """
     cache_key = f"{function}:{symbol}" if symbol else function
     cache = _load_cache()
     now = time.time()
 
     if cache_key in cache and (now - cache[cache_key]["timestamp"]) < CACHE_TTL:
-        print(f"  [cache hit] {cache_key}")
+        log.debug("cache hit %s", cache_key)
         return cache[cache_key]["data"]
 
-    print(f"  [API call] {function} {symbol}")
+    log.info("API call %s %s", function, symbol)
     params = {"function": function, "apikey": ALPHAVANTAGE_API_KEY, **extra_params}
     if symbol:
         params["symbol"] = symbol.upper()
 
-    r = requests.get(ALPHAVANTAGE_BASE, params=params)
-    data = r.json()
+    last_exc: Exception | None = None
+    for attempt in (1, 2):
+        try:
+            r = requests.get(ALPHAVANTAGE_BASE, params=params, timeout=15)
+            data = r.json()
+            break
+        except (requests.RequestException, ValueError) as e:
+            last_exc = e
+            if attempt == 1:
+                time.sleep(0.5)
+            continue
+    else:
+        return {"Error Message": f"Request failed: {last_exc}"}
 
     def clean_keys(obj):
         if isinstance(obj, dict):
@@ -74,12 +91,11 @@ def fetch_alpha_vantage(function: str, symbol: str = "", **extra_params) -> dict
     data = clean_keys(data)
 
     if "Information" in data or "Note" in data or "Error Message" in data:
-        print(f"  [API error] {data}")
+        log.warning("API error response: %s", data)
         return data
 
     cache[cache_key] = {"timestamp": now, "data": data}
     _save_cache(cache)
-
     return data
 
 
@@ -94,6 +110,7 @@ def _to_number(v):
         return float(v)
     except ValueError:
         return v
+
 
 # =====================================================================
 # TOOL 1: get_stock_quote
@@ -116,28 +133,46 @@ def _to_number(v):
 # All values are strings → convert with _to_number()
 # =====================================================================
 
-def get_stock_quote(ticker: str) -> dict:
-    # 1. Call fetch_alpha_vantage("GLOBAL_QUOTE", ticker)
-    # 2. Extract fields from "Global Quote" dict (convert strings → float/int)
-    # 3. Call fetch_alpha_vantage("OVERVIEW", ticker)
-    # 4. Extract market_cap, 52-week high/low, currency
-    # 5. Merge both dicts and return
-    # 6. Wrap in try/except
-    try:
-        global_quote_data = fetch_alpha_vantage("GLOBAL_QUOTE", symbol=ticker).get("Global Quote")
-        global_quote_cleaned = {k:_to_number(v) for k, v in global_quote_data.items()}
-        print()
-        overview_data = fetch_alpha_vantage("OVERVIEW", symbol=ticker)
-        overview_keys = ["MarketCapitalization","52WeekHigh","52WeekLow","Currency"]
-        returned_overview_data = {k:v for k,v in overview_data.items() if k in overview_keys}
-        print(overview_data)
 
-        combined_dict = global_quote_cleaned | returned_overview_data
-        returned_combined_data = {k:_to_number(v) for k,v in combined_dict.items()}
-        return returned_combined_data
+def _api_error(data: dict) -> str | None:
+    """Return a human-readable error if the AV response is an error envelope."""
+    if not isinstance(data, dict):
+        return "Unexpected API response"
+    return data.get("Information") or data.get("Note") or data.get("Error Message")
+
+
+def get_stock_quote(ticker: str) -> dict:
+    ticker = ticker.upper()
+    try:
+        quote_resp = fetch_alpha_vantage("GLOBAL_QUOTE", symbol=ticker)
+        quote = (quote_resp or {}).get("Global Quote") or {}
+        if not quote:
+            return {"ticker": ticker, "error": _api_error(quote_resp) or "No quote data"}
+
+        result = {
+            "ticker": ticker,
+            "price": _to_number(quote.get("price")),
+            "open": _to_number(quote.get("open")),
+            "day_high": _to_number(quote.get("high")),
+            "day_low": _to_number(quote.get("low")),
+            "previous_close": _to_number(quote.get("previous close")),
+            "change": _to_number(quote.get("change")),
+            "change_pct": _to_number(quote.get("change percent")),
+            "volume": _to_number(quote.get("volume")),
+            "latest_trading_day": quote.get("latest trading day"),
+        }
+
+        overview = fetch_alpha_vantage("OVERVIEW", symbol=ticker) or {}
+        if _api_error(overview) is None:
+            result["market_cap"] = _to_number(overview.get("MarketCapitalization"))
+            result["fifty_two_week_high"] = _to_number(overview.get("52WeekHigh"))
+            result["fifty_two_week_low"] = _to_number(overview.get("52WeekLow"))
+            result["currency"] = overview.get("Currency")
+
+        return result
     except Exception as e:
-        print(f"Exception detected: {e}")
-        traceback.print_exc()
+        log.exception("get_stock_quote failed")
+        return {"ticker": ticker, "error": str(e)}
 
 
 # =====================================================================
@@ -173,8 +208,30 @@ RATIO_MAP = {
 
 
 def get_financial_ratios(ticker: str, ratios: list[str] | None = None) -> dict:
-    # TODO: implement
-    pass
+    ticker = ticker.upper()
+    try:
+        data = fetch_alpha_vantage("OVERVIEW", symbol=ticker) or {}
+        if _api_error(data) is not None or not data.get("Symbol"):
+            return {"ticker": ticker, "error": _api_error(data) or "No overview data"}
+
+        requested = ratios if ratios else list(RATIO_MAP.keys())
+        ratio_values: dict[str, float | None] = {}
+        for key in requested:
+            av_key = RATIO_MAP.get(key)
+            if av_key is None:
+                continue
+            ratio_values[key] = _to_number(data.get(av_key))
+
+        return {
+            "ticker": ticker,
+            "company_name": data.get("Name"),
+            "sector": data.get("Sector"),
+            "industry": data.get("Industry"),
+            "ratios": ratio_values,
+        }
+    except Exception as e:
+        log.exception("get_financial_ratios failed")
+        return {"ticker": ticker, "error": str(e)}
 
 
 # =====================================================================
@@ -200,9 +257,58 @@ def get_financial_ratios(ticker: str, ratios: list[str] | None = None) -> dict:
 #   5. Return dict. Wrap in try/except.
 # =====================================================================
 
+
 def search_financial_news(query: str, days_back: int = 7) -> dict:
-    # TODO: implement
-    pass
+    try:
+        tokens = re.findall(r"\b[A-Z]{1,5}\b", query.upper())
+        params: dict = {}
+        if tokens:
+            params["tickers"] = ",".join(tokens[:3])
+
+        data = fetch_alpha_vantage("NEWS_SENTIMENT", **params) or {}
+        feed = data.get("feed") or []
+        if _api_error(data) is not None and not feed:
+            return {"query": query, "error": _api_error(data)}
+
+        cutoff = datetime.now() - timedelta(days=days_back)
+        seen: set[str] = set()
+        articles: list[dict] = []
+
+        for item in feed:
+            title = item.get("title") or ""
+            if not title or title in seen:
+                continue
+            seen.add(title)
+
+            ts = item.get("time_published") or ""
+            try:
+                published = datetime.strptime(ts[:8], "%Y%m%d")
+                if published < cutoff:
+                    continue
+            except (ValueError, IndexError):
+                pass  # keep article if date can't be parsed
+
+            articles.append(
+                {
+                    "title": title,
+                    "source": item.get("source"),
+                    "url": item.get("url"),
+                    "published": ts,
+                    "sentiment": item.get("overall_sentiment_label"),
+                }
+            )
+            if len(articles) >= 10:
+                break
+
+        return {
+            "query": query,
+            "days_back": days_back,
+            "num_results": len(articles),
+            "articles": articles,
+        }
+    except Exception as e:
+        log.exception("search_financial_news failed")
+        return {"query": query, "error": str(e)}
 
 
 # =====================================================================
@@ -249,9 +355,44 @@ SECTOR_ETFS = {
 }
 
 
+def _quote_snapshot(symbol: str) -> dict:
+    """Helper: fetch a single GLOBAL_QUOTE and return a compact dict."""
+    data = fetch_alpha_vantage("GLOBAL_QUOTE", symbol=symbol) or {}
+    quote = data.get("Global Quote") or {}
+    if not quote:
+        return {"symbol": symbol, "error": _api_error(data) or "No data"}
+    return {
+        "symbol": symbol,
+        "price": _to_number(quote.get("price")),
+        "change_pct": _to_number(quote.get("change percent")),
+    }
+
+
 def get_market_overview(include_sectors: bool = True) -> dict:
-    # TODO: implement
-    pass
+    indices: dict[str, dict] = {}
+    for name, symbol in INDICES.items():
+        try:
+            indices[name] = _quote_snapshot(symbol)
+        except Exception as e:
+            indices[name] = {"symbol": symbol, "error": str(e)}
+
+    result: dict = {
+        "timestamp": datetime.now().isoformat(timespec="seconds"),
+        "indices": indices,
+    }
+
+    if include_sectors:
+        sectors: dict[str, dict] = {}
+        for name, symbol in SECTOR_ETFS.items():
+            try:
+                snap = _quote_snapshot(symbol)
+                snap["etf"] = snap.pop("symbol")
+                sectors[name] = snap
+            except Exception as e:
+                sectors[name] = {"etf": symbol, "error": str(e)}
+        result["sectors"] = sectors
+
+    return result
 
 
 # =====================================================================
@@ -279,8 +420,28 @@ TREASURY_MATURITIES = ["3month", "5year", "10year", "30year"]
 
 
 def get_treasury_yields() -> dict:
-    # TODO: implement
-    pass
+    yields: dict[str, float | None] = {}
+    for maturity in TREASURY_MATURITIES:
+        try:
+            data = fetch_alpha_vantage("TREASURY_YIELD", maturity=maturity) or {}
+            series = data.get("data") or []
+            yields[maturity] = _to_number(series[0].get("value")) if series else None
+        except Exception:
+            log.exception("treasury fetch failed for %s", maturity)
+            yields[maturity] = None
+
+    result: dict = {
+        "timestamp": datetime.now().isoformat(timespec="seconds"),
+        "yields": yields,
+    }
+
+    ten_y, three_m = yields.get("10year"), yields.get("3month")
+    if isinstance(ten_y, (int, float)) and isinstance(three_m, (int, float)):
+        spread = round(ten_y - three_m, 4)
+        result["spread_10y_3m"] = spread
+        result["curve_status"] = "inverted (recession signal)" if spread < 0 else "normal"
+
+    return result
 
 
 # =====================================================================
@@ -311,13 +472,35 @@ SECTOR_TICKERS = {
     "Healthcare": ["UNH", "JNJ", "LLY", "PFE", "ABBV", "MRK", "TMO", "ABT", "DHR", "BMY"],
     "Financials": ["JPM", "BAC", "WFC", "GS", "MS", "BLK", "SCHW", "AXP", "C", "USB"],
     "Energy": ["XOM", "CVX", "COP", "SLB", "EOG", "MPC", "PSX", "VLO", "OXY", "HAL"],
-    "Consumer Discretionary": ["AMZN", "TSLA", "HD", "MCD", "NKE", "SBUX", "LOW", "TJX", "BKNG", "CMG"],
+    "Consumer Discretionary": [
+        "AMZN",
+        "TSLA",
+        "HD",
+        "MCD",
+        "NKE",
+        "SBUX",
+        "LOW",
+        "TJX",
+        "BKNG",
+        "CMG",
+    ],
     "Consumer Staples": ["PG", "KO", "PEP", "COST", "WMT", "PM", "MO", "CL", "EL", "GIS"],
     "Industrials": ["CAT", "UNP", "HON", "BA", "RTX", "DE", "LMT", "GE", "MMM", "UPS"],
     "Utilities": ["NEE", "DUK", "SO", "D", "AEP", "SRE", "EXC", "XEL", "ED", "WEC"],
     "Real Estate": ["PLD", "AMT", "CCI", "EQIX", "SPG", "PSA", "O", "WELL", "DLR", "AVB"],
     "Materials": ["LIN", "APD", "SHW", "ECL", "FCX", "NEM", "NUE", "VMC", "MLM", "DD"],
-    "Communication Services": ["GOOGL", "META", "DIS", "NFLX", "CMCSA", "TMUS", "VZ", "T", "CHTR", "EA"],
+    "Communication Services": [
+        "GOOGL",
+        "META",
+        "DIS",
+        "NFLX",
+        "CMCSA",
+        "TMUS",
+        "VZ",
+        "T",
+        "CHTR",
+        "EA",
+    ],
 }
 
 
@@ -328,8 +511,64 @@ def screen_stocks(
     min_dividend_yield: float | None = None,
     max_debt_to_equity: float | None = None,
 ) -> dict:
-    # TODO: implement
-    pass
+    sector_key = next((s for s in SECTOR_TICKERS if s.lower() == sector.lower()), None)
+    if sector_key is None:
+        return {
+            "sector": sector,
+            "error": f"Unknown sector. Available: {list(SECTOR_TICKERS.keys())}",
+        }
+
+    matches: list[dict] = []
+    for ticker in SECTOR_TICKERS[sector_key]:
+        try:
+            data = fetch_alpha_vantage("OVERVIEW", symbol=ticker) or {}
+            if _api_error(data) is not None or not data.get("Symbol"):
+                continue
+
+            pe = _to_number(data.get("PERatio"))
+            mcap = _to_number(data.get("MarketCapitalization"))
+            mcap_b = mcap / 1e9 if isinstance(mcap, (int, float)) else None
+            div_y = _to_number(data.get("DividendYield"))
+
+            if max_pe is not None and isinstance(pe, (int, float)) and pe > max_pe:
+                continue
+            if (
+                min_market_cap_b is not None
+                and isinstance(mcap_b, (int, float))
+                and mcap_b < min_market_cap_b
+            ):
+                continue
+            if (
+                min_dividend_yield is not None
+                and isinstance(div_y, (int, float))
+                and div_y < min_dividend_yield
+            ):
+                continue
+
+            matches.append(
+                {
+                    "ticker": ticker,
+                    "name": data.get("Name"),
+                    "pe_ratio": pe,
+                    "market_cap_b": round(mcap_b, 2) if isinstance(mcap_b, (int, float)) else None,
+                    "dividend_yield": div_y,
+                }
+            )
+        except Exception:
+            log.exception("screen failed for %s", ticker)
+            continue
+
+    return {
+        "sector": sector_key,
+        "filters_applied": {
+            "max_pe": max_pe,
+            "min_market_cap_b": min_market_cap_b,
+            "min_dividend_yield": min_dividend_yield,
+            "max_debt_to_equity": max_debt_to_equity,
+        },
+        "num_matches": len(matches),
+        "matches": matches,
+    }
 
 
 # =====================================================================
@@ -398,8 +637,18 @@ ECONOMIC_DATA = {
 
 
 def get_economic_indicators(indicators: list[str]) -> dict:
-    # TODO: implement
-    pass
+    out: dict[str, dict] = {}
+    available = list(ECONOMIC_DATA.keys())
+    for name in indicators:
+        key = name.lower()
+        if key in ECONOMIC_DATA:
+            out[key] = dict(ECONOMIC_DATA[key])
+        else:
+            out[key] = {"error": f"Unknown indicator. Available: {available}"}
+    return {
+        "indicators": out,
+        "note": "Values are hardcoded snapshots. For live data, use FRED API.",
+    }
 
 
 # -- Dispatch table: tool name (str) → function --

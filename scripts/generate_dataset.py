@@ -14,19 +14,20 @@ import os
 import sys
 import time
 from pathlib import Path
-from openai import OpenAI
 
 from dotenv import load_dotenv
+from openai import OpenAI
+
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from configs.prompt_templates import (
-    SYSTEM_PROMPT,
     COT_GENERATION_PROMPT,
-    TOOL_TRAJECTORY_PROMPT,
     GUARDRAIL_GENERATION_PROMPT,
+    SYSTEM_PROMPT,
+    TOOL_TRAJECTORY_PROMPT,
 )
 
 # ---------------------------------------------------------------------------
@@ -130,7 +131,8 @@ def format_tool_trajectory(query, raw_generation):
     return [
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": query},
-    ] + trajectory
+        *trajectory,
+    ]
 
 
 # ===========================================================================
@@ -330,7 +332,7 @@ def main():
     print(f"  CoT:       {n_cot}")
     print(f"  Tool:      {n_tool}")
     print(f"  Guardrail: {n_guard}")
-    print(f"\nNext: python scripts/prepare_dataset.py")
+    print("\nNext: python scripts/prepare_dataset.py")
     print(f"{'=' * 60}")
 
 

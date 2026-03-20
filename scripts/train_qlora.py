@@ -39,7 +39,6 @@ import urllib.request
 import torch
 from datasets import Dataset
 
-
 # =====================================================================
 # DEFAULT HYPERPARAMETERS — Optimized for L40S (48 GB VRAM)
 # =====================================================================
@@ -400,7 +399,7 @@ def save_and_push(model, tokenizer, args) -> None:
 
     # ── Save merged model ──────────────────────────────────────
     print(f"    [B] Saving merged model to {args.merged_path}/ ...")
-    print(f"        (this takes a few minutes — merging LoRA weights into base model)")
+    print("        (this takes a few minutes — merging LoRA weights into base model)")
     model.save_pretrained_merged(
         args.merged_path, tokenizer, save_method="merged_16bit",
     )
@@ -415,9 +414,9 @@ def save_and_push(model, tokenizer, args) -> None:
     if args.push_to_hub:
         hf_user = args.hf_username
         print(f"    [C] Pushing to HuggingFace Hub as {hf_user}/finagent-7b-* ...")
-        print(f"        Pushing LoRA adapter ...")
+        print("        Pushing LoRA adapter ...")
         model.push_to_hub(f"{hf_user}/finagent-7b-lora", tokenizer=tokenizer, private=True)
-        print(f"        Pushing merged model ...")
+        print("        Pushing merged model ...")
         model.push_to_hub_merged(
             f"{hf_user}/finagent-7b-merged", tokenizer=tokenizer,
             save_method="merged_16bit", private=True,
@@ -505,7 +504,7 @@ def main():
     vram_gb = torch.cuda.get_device_properties(0).total_memory / 1e9
     bf16_ok = torch.cuda.is_bf16_supported()
 
-    print(f"[Step 0] GPU & environment")
+    print("[Step 0] GPU & environment")
     print(f"    GPU:       {gpu_name}")
     print(f"    VRAM:      {vram_gb:.1f} GB")
     print(f"    PyTorch:   {torch.__version__}")
@@ -516,7 +515,7 @@ def main():
     # Quick sanity check — warn if on a small GPU
     if vram_gb < 20:
         print(f"    [!] Only {vram_gb:.0f} GB VRAM detected. Default settings are for L40S (48 GB).")
-        print(f"        Consider: --max_seq_length 2048 --batch_size 4 --grad_accum 4")
+        print("        Consider: --max_seq_length 2048 --batch_size 4 --grad_accum 4")
         print()
 
     # ────────────────────────────────────────────────────────────
@@ -527,7 +526,7 @@ def main():
     #   - Tool trajectories: model calls financial tools (get_stock_quote, etc.)
     #   - Guardrails: model refuses dangerous financial requests
     # ────────────────────────────────────────────────────────────
-    print(f"[Step 1] Download & load training data")
+    print("[Step 1] Download & load training data")
     download_data(args.data_url, DATA_FILES)
 
     train_dataset = load_jsonl("train.jsonl")
@@ -551,10 +550,10 @@ def main():
     #   The Instruct model already knows how to follow instructions.
     #   We're adding financial reasoning ON TOP — not teaching chat from scratch.
     # ────────────────────────────────────────────────────────────
-    print(f"[Step 2] Load model in 4-bit quantization")
+    print("[Step 2] Load model in 4-bit quantization")
     print(f"    Model: {args.model_name}")
     print(f"    Max sequence length: {args.max_seq_length} tokens")
-    print(f"    Loading ... (this downloads ~4 GB on first run)")
+    print("    Loading ... (this downloads ~4 GB on first run)")
 
     from unsloth import FastLanguageModel
 
@@ -586,11 +585,11 @@ def main():
     #     Controls WHAT the model generates.
     #     Critical for producing valid JSON in tool_calls.
     # ────────────────────────────────────────────────────────────
-    print(f"[Step 3] Attach LoRA adapters")
+    print("[Step 3] Attach LoRA adapters")
     print(f"    Rank: {args.lora_rank} (higher = more expressive, more params)")
     print(f"    Alpha: {args.lora_alpha} (scaling = alpha/rank = {args.lora_alpha/args.lora_rank:.1f})")
     print(f"    Dropout: {args.lora_dropout}")
-    print(f"    Target modules: attention (q/k/v/o_proj) + MLP (gate/up/down_proj)")
+    print("    Target modules: attention (q/k/v/o_proj) + MLP (gate/up/down_proj)")
 
     model = FastLanguageModel.get_peft_model(
         model,
@@ -619,10 +618,10 @@ def main():
     # are compatible with Mistral's chat template. A single bad
     # example would crash training mid-run.
     # ────────────────────────────────────────────────────────────
-    print(f"[Step 4] Validate data & compute token stats")
+    print("[Step 4] Validate data & compute token stats")
     validate_chat_template(tokenizer, train_dataset, val_dataset)
     print()
-    print(f"    Token length distribution (train split):")
+    print("    Token length distribution (train split):")
     print_token_stats(tokenizer, train_dataset, args.max_seq_length)
     print()
 
@@ -635,7 +634,7 @@ def main():
     # ────────────────────────────────────────────────────────────
     report_to = "none"
     if args.use_wandb:
-        print(f"[Step 5] Initialize Weights & Biases")
+        print("[Step 5] Initialize Weights & Biases")
         import wandb
         wandb.init(
             project="finagent-7b",
@@ -645,8 +644,8 @@ def main():
         report_to = "wandb"
         print(f"    W&B run: {wandb.run.get_url()}")
     else:
-        print(f"[Step 5] W&B disabled (pass --use_wandb to enable)")
-        print(f"    To set up: wandb login   (on the cluster, before sbatch)")
+        print("[Step 5] W&B disabled (pass --use_wandb to enable)")
+        print("    To set up: wandb login   (on the cluster, before sbatch)")
     print()
 
     # ────────────────────────────────────────────────────────────
@@ -661,8 +660,8 @@ def main():
     #   - Periodic evaluation on the validation set
     #   - Checkpointing (save model every N steps)
     # ────────────────────────────────────────────────────────────
-    print(f"[Step 6] Configure SFTTrainer")
-    from trl import SFTTrainer, SFTConfig
+    print("[Step 6] Configure SFTTrainer")
+    from trl import SFTConfig, SFTTrainer
 
     eff_bs = args.batch_size * args.grad_accum
     total_steps = len(train_dataset) * args.epochs // eff_bs
@@ -676,7 +675,7 @@ def main():
     print(f"    Warmup steps:        ~{warmup_steps} (10% of total)")
     print(f"    Learning rate:       {args.lr} (cosine decay after warmup)")
     print(f"    Precision:           {'bfloat16' if bf16_ok else 'float16'}")
-    print(f"    Optimizer:           AdamW 8-bit (saves VRAM vs full AdamW)")
+    print("    Optimizer:           AdamW 8-bit (saves VRAM vs full AdamW)")
 
     sft_config = SFTConfig(
         # Output
@@ -731,7 +730,7 @@ def main():
         args=sft_config,
         formatting_func=make_formatting_func(tokenizer),
     )
-    print(f"    Trainer created successfully")
+    print("    Trainer created successfully")
     print()
 
     # ────────────────────────────────────────────────────────────
@@ -747,7 +746,7 @@ def main():
     #   - Val loss: should end within 0.2 of training loss
     #   - Time: ~10-15 min on L40S, ~20 min on T4
     # ────────────────────────────────────────────────────────────
-    print(f"[Step 7] Training started")
+    print("[Step 7] Training started")
     print("=" * 60)
     train_start = time.time()
 
@@ -755,7 +754,7 @@ def main():
 
     train_time = time.time() - train_start
     print("=" * 60)
-    print(f"    TRAINING COMPLETE!")
+    print("    TRAINING COMPLETE!")
     print(f"    Total steps:     {trainer_stats.global_step}")
     print(f"    Final train loss:{trainer_stats.training_loss:.4f}")
     print(f"    Training time:   {train_time:.0f}s ({train_time/60:.1f} min)")
@@ -766,20 +765,20 @@ def main():
     eval_steps_log = [log["step"] for log in trainer.state.log_history if "eval_loss" in log]
 
     if train_losses:
-        print(f"\n    Loss curve (train):")
+        print("\n    Loss curve (train):")
         print(f"      Start: {train_losses[0]:.4f}")
         print(f"      End:   {train_losses[-1]:.4f}")
 
     if eval_losses:
-        print(f"    Loss curve (val):")
-        for step, loss in zip(eval_steps_log, eval_losses):
+        print("    Loss curve (val):")
+        for step, loss in zip(eval_steps_log, eval_losses, strict=False):
             print(f"      Step {step:>4d}: {loss:.4f}")
 
         # Overfitting check
         gap = eval_losses[-1] - train_losses[-1]
         if gap > 0.5:
             print(f"\n    [!] Val-Train gap = {gap:.2f} — possible overfitting!")
-            print(f"        Consider reducing --epochs or increasing --lora_dropout")
+            print("        Consider reducing --epochs or increasing --lora_dropout")
         else:
             print(f"\n    Val-Train gap = {gap:.2f} — healthy generalization")
     print()
@@ -793,24 +792,24 @@ def main():
     #   3. Guardrails (refuses dangerous financial requests)
     # ────────────────────────────────────────────────────────────
     if not args.skip_tests:
-        print(f"[Step 8] Post-training generation tests")
+        print("[Step 8] Post-training generation tests")
         run_test_generation(model, tokenizer)
         print()
     else:
-        print(f"[Step 8] Skipped (--skip_tests)")
+        print("[Step 8] Skipped (--skip_tests)")
         print()
 
     # ────────────────────────────────────────────────────────────
     # STEP 9: SAVE MODEL
     # ────────────────────────────────────────────────────────────
-    print(f"[Step 9] Save model")
+    print("[Step 9] Save model")
     save_and_push(model, tokenizer, args)
 
     # ── Cleanup W&B ────────────────────────────────────────────
     if args.use_wandb:
         import wandb
         wandb.finish()
-        print(f"    W&B run finalized")
+        print("    W&B run finalized")
 
     # ── Summary ────────────────────────────────────────────────
     total_time = time.time() - t0
