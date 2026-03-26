@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install test-only deps
+        # Skip the heavy GPU/training stack (torch, unsloth, bitsandbytes).
+        # The tests mock them via sys.modules, so we only need a light footprint.
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install \
+            pytest ruff \
+            requests python-dotenv jsonschema
+
+      - name: Lint
+        run: ruff check scripts tests configs
+
+      - name: Test
+        run: pytest tests/ -v
+
+  eval-smoke:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install requests python-dotenv jsonschema
+      - name: Smoke-run eval harness (mock mode)
+        run: python scripts/eval.py --mode=mock
+      - name: Upload eval report
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-report-mock
+          path: results/

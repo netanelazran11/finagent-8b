@@ -1,0 +1,47 @@
+[project]
+name = "finagent"
+version = "0.1.0"
+description = "Fine-tuned Mistral 7B financial reasoning agent (synthetic data → QLoRA → ReAct → eval)."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Dana Bergel" }]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "E", "W",   # pycodestyle
+    "F",        # pyflakes
+    "I",        # isort
+    "B",        # bugbear
+    "UP",       # pyupgrade
+    "RUF",      # ruff-specific
+]
+ignore = [
+    "E501",    # line too long: long docstrings + tool prompts are intentional
+    "B008",    # function calls in arg defaults: not used here
+    "RUF001",  # ambiguous unicode in strings (× used intentionally for "times")
+    "RUF003",  # ambiguous unicode in comments
+]
+exclude = [
+    "unsloth_compiled_cache",
+    "wandb",
+    "data",
+    "notebooks",
+    ".venv",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E402"]                       # sys.path hacks before imports
+"scripts/agent_*.py" = ["E402"]            # same: sys.path before tools import
+"scripts/debug_pipeline.py" = ["E402"]
+"scripts/generate_dataset.py" = ["E402"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+    "integration: requires real API keys, not run in CI",
+]
