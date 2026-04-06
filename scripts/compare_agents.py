@@ -23,8 +23,7 @@ import time
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
-sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "scripts"))  # for agent_from_scratch, agent_langgraph
 
 DEFAULT_QUERIES = [
     "What is Apple's current price?",
@@ -79,7 +78,7 @@ TOKENIZER = None
 GRAPH = None
 
 
-def main():
+def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default="danab17/finagent-7b-merged")
     ap.add_argument("--queries", type=int, default=len(DEFAULT_QUERIES))

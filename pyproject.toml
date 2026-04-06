@@ -1,10 +1,17 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["finagent", "configs"]
+
 [project]
 name = "finagent"
 version = "0.1.0"
 description = "Fine-tuned Mistral 7B financial reasoning agent (synthetic data → QLoRA → ReAct → eval)."
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [{ name = "Dana Bergel" }]
+authors = [{ name = "Netanel Azran" }]
 
 [tool.ruff]
 line-length = 100

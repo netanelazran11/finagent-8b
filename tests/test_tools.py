@@ -1,17 +1,13 @@
 """
-Unit tests for scripts/tools.py
+Unit tests for finagent/tools.py
 
 Tests use mocked API responses so they run without network access or API keys.
 Run: python -m pytest tests/test_tools.py -v
 """
 
-import sys
-from pathlib import Path
 from unittest.mock import patch
 
-sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
-
-from tools import (
+from finagent.tools import (
     TOOL_REGISTRY,
     _to_number,
     get_economic_indicators,
@@ -119,7 +115,7 @@ class TestToNumber:
 # ── Tool 1: get_stock_quote ──────────────────────────────────────────
 
 class TestGetStockQuote:
-    @patch("tools.fetch_alpha_vantage")
+    @patch("finagent.tools.fetch_alpha_vantage")
     def test_returns_price(self, mock_fetch):
         mock_fetch.side_effect = [MOCK_GLOBAL_QUOTE, MOCK_OVERVIEW]
         result = get_stock_quote("AAPL")
@@ -127,14 +123,14 @@ class TestGetStockQuote:
         # Should contain price as a float
         assert "price" in result or "symbol" in result
 
-    @patch("tools.fetch_alpha_vantage")
+    @patch("finagent.tools.fetch_alpha_vantage")
     def test_handles_api_error(self, mock_fetch):
         mock_fetch.return_value = {"Information": "Rate limited"}
         result = get_stock_quote("AAPL")
         # Should not crash — either returns error dict or partial data
         assert result is not None
 
-    @patch("tools.fetch_alpha_vantage")
+    @patch("finagent.tools.fetch_alpha_vantage")
     def test_ticker_case_insensitive(self, mock_fetch):
         mock_fetch.side_effect = [MOCK_GLOBAL_QUOTE, MOCK_OVERVIEW]
         result = get_stock_quote("aapl")
@@ -144,7 +140,7 @@ class TestGetStockQuote:
 # ── Tool 2: get_financial_ratios ─────────────────────────────────────
 
 class TestGetFinancialRatios:
-    @patch("tools.fetch_alpha_vantage")
+    @patch("finagent.tools.fetch_alpha_vantage")
     def test_returns_ratios(self, mock_fetch):
         mock_fetch.return_value = MOCK_OVERVIEW
         result = get_financial_ratios("AAPL")
@@ -152,7 +148,7 @@ class TestGetFinancialRatios:
         if "ratios" in result:
             assert isinstance(result["ratios"], dict)
 
-    @patch("tools.fetch_alpha_vantage")
+    @patch("finagent.tools.fetch_alpha_vantage")
     def test_specific_ratios(self, mock_fetch):
         mock_fetch.return_value = MOCK_OVERVIEW
         result = get_financial_ratios("AAPL", ratios=["pe_ratio", "beta"])
@@ -160,7 +156,7 @@ class TestGetFinancialRatios:
         if "ratios" in result:
             assert len(result["ratios"]) <= 2
 
-    @patch("tools.fetch_alpha_vantage")
+    @patch("finagent.tools.fetch_alpha_vantage")
     def test_includes_company_info(self, mock_fetch):
         mock_fetch.return_value = MOCK_OVERVIEW
         result = get_financial_ratios("AAPL")
@@ -171,7 +167,7 @@ class TestGetFinancialRatios:
 # ── Tool 3: search_financial_news ────────────────────────────────────
 
 class TestSearchFinancialNews:
-    @patch("tools.fetch_alpha_vantage")
+    @patch("finagent.tools.fetch_alpha_vantage")
     def test_returns_articles(self, mock_fetch):
         mock_fetch.return_value = MOCK_NEWS
         result = search_financial_news("AAPL earnings")
@@ -180,7 +176,7 @@ class TestSearchFinancialNews:
             assert isinstance(result["articles"], list)
             assert len(result["articles"]) <= 10
 
-    @patch("tools.fetch_alpha_vantage")
+    @patch("finagent.tools.fetch_alpha_vantage")
     def test_empty_query(self, mock_fetch):
         mock_fetch.return_value = {"feed": []}
         result = search_financial_news("xyz")
@@ -190,7 +186,7 @@ class TestSearchFinancialNews:
 # ── Tool 4: get_market_overview ──────────────────────────────────────
 
 class TestGetMarketOverview:
-    @patch("tools.fetch_alpha_vantage")
+    @patch("finagent.tools.fetch_alpha_vantage")
     def test_returns_indices(self, mock_fetch):
         mock_fetch.return_value = MOCK_GLOBAL_QUOTE
         result = get_market_overview(include_sectors=False)
@@ -198,7 +194,7 @@ class TestGetMarketOverview:
         if "indices" in result:
             assert isinstance(result["indices"], dict)
 
-    @patch("tools.fetch_alpha_vantage")
+    @patch("finagent.tools.fetch_alpha_vantage")
     def test_includes_sectors(self, mock_fetch):
         mock_fetch.return_value = MOCK_GLOBAL_QUOTE
         result = get_market_overview(include_sectors=True)
@@ -208,7 +204,7 @@ class TestGetMarketOverview:
 # ── Tool 5: get_treasury_yields ──────────────────────────────────────
 
 class TestGetTreasuryYields:
-    @patch("tools.fetch_alpha_vantage")
+    @patch("finagent.tools.fetch_alpha_vantage")
     def test_returns_yields(self, mock_fetch):
         mock_fetch.return_value = MOCK_TREASURY
         result = get_treasury_yields()
@@ -216,7 +212,7 @@ class TestGetTreasuryYields:
         if "yields" in result:
             assert isinstance(result["yields"], dict)
 
-    @patch("tools.fetch_alpha_vantage")
+    @patch("finagent.tools.fetch_alpha_vantage")
     def test_computes_spread(self, mock_fetch):
         mock_fetch.return_value = MOCK_TREASURY
         result = get_treasury_yields()
@@ -227,7 +223,7 @@ class TestGetTreasuryYields:
 # ── Tool 6: screen_stocks ───────────────────────────────────────────
 
 class TestScreenStocks:
-    @patch("tools.fetch_alpha_vantage")
+    @patch("finagent.tools.fetch_alpha_vantage")
     def test_valid_sector(self, mock_fetch):
         mock_fetch.return_value = MOCK_OVERVIEW
         result = screen_stocks("Technology")
@@ -241,7 +237,7 @@ class TestScreenStocks:
         if result:
             assert "error" in result
 
-    @patch("tools.fetch_alpha_vantage")
+    @patch("finagent.tools.fetch_alpha_vantage")
     def test_with_filters(self, mock_fetch):
         mock_fetch.return_value = MOCK_OVERVIEW
         result = screen_stocks("Technology", max_pe=30)

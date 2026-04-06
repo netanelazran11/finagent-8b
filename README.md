@@ -4,7 +4,7 @@ End-to-end project: I generated a synthetic dataset, QLoRA-fine-tuned **Mistral 
 
 > **Why this matters**: a 7B model fine-tuned on the right data can match much larger generalist models on a focused domain. This repo shows the full loop — data, training, agent, evaluation — without hand-waving any step.
 
-[![CI](https://github.com/DanAbergel/finagent-8b/actions/workflows/ci.yml/badge.svg)](https://github.com/DanAbergel/finagent-8b/actions/workflows/ci.yml)
+[![CI](https://github.com/netanelazran11/finagent-8b/actions/workflows/ci.yml/badge.svg)](https://github.com/netanelazran11/finagent-8b/actions/workflows/ci.yml)
 [![Model on HF](https://img.shields.io/badge/🤗_model-danab17/finagent--7b--merged-yellow)](https://huggingface.co/danab17/finagent-7b-merged)
 
 ---
@@ -39,7 +39,7 @@ End-to-end project: I generated a synthetic dataset, QLoRA-fine-tuned **Mistral 
 ## Quick start
 
 ```bash
-git clone https://github.com/DanAbergel/finagent-8b.git
+git clone https://github.com/netanelazran11/finagent-8b.git
 cd finagent
 pip install -r requirements.txt
 cp .env.example .env       # add ALPHAVANTAGE_API_KEY + OPENAI_API_KEY

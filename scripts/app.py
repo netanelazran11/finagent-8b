@@ -20,9 +20,7 @@ import json
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).parent.parent
-sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(Path(__file__).parent))  # for agent_from_scratch
 
 import gradio as gr  # noqa: E402
 from agent_from_scratch import (  # noqa: E402
@@ -97,7 +95,7 @@ def run_query(model, tokenizer, query: str, max_iters: int = 5) -> tuple[str, st
     return final or "(no final answer)", format_trace(trace)
 
 
-def main():
+def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default=MODEL_PATH)
     ap.add_argument("--share", action="store_true")

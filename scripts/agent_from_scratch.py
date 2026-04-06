@@ -19,17 +19,12 @@ Usage:
 
 import json
 import logging
-import sys
-from pathlib import Path
+from typing import Any
 
-# Add project root to path so we can import tools and configs
-sys.path.insert(0, str(Path(__file__).parent.parent))
-sys.path.insert(0, str(Path(__file__).parent))
-
-from tools import TOOL_REGISTRY
 from unsloth import FastLanguageModel
 
 from configs.prompt_templates import SYSTEM_PROMPT
+from finagent.tools import TOOL_REGISTRY
 
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 log = logging.getLogger("finagent.scratch")
@@ -54,7 +49,7 @@ log = logging.getLogger("finagent.scratch")
 # =====================================================================
 
 
-def load_model(path: str):
+def load_model(path: str) -> tuple[Any, Any]:
     model, tokenizer = FastLanguageModel.from_pretrained(
         model_name=path,
         max_seq_length=4096,
@@ -91,7 +86,7 @@ def load_model(path: str):
 # =====================================================================
 
 
-def generate(model, tokenizer, messages: list[dict]) -> str:
+def generate(model: Any, tokenizer: Any, messages: list[dict]) -> str:
     inputs = tokenizer.apply_chat_template(
         messages,
         tokenize=True,
@@ -249,7 +244,7 @@ def execute_tools(tool_calls: list[dict]) -> list[dict]:
 # =====================================================================
 
 
-def react_loop(model, tokenizer, user_query: str, max_iterations: int = 5) -> str:
+def react_loop(model: Any, tokenizer: Any, user_query: str, max_iterations: int = 5) -> str:
     messages = [
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": user_query},
@@ -294,7 +289,7 @@ MAX_ITERATIONS = 5
 # =====================================================================
 
 
-def main():
+def main() -> None:
     print("=" * 60)
     print("  FinAgent — From Scratch (no framework)")
     print("=" * 60)

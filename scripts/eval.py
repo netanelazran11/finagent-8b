@@ -29,12 +29,12 @@ import json
 import os
 import sys
 import time
+from collections.abc import Callable
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
-sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "scripts"))  # for agent_from_scratch imports
 
 
 @dataclass
@@ -87,7 +87,7 @@ Reply with strict JSON: {{"score": <int 1-5>, "rationale": "<one short sentence>
 # ---------------------------------------------------------------------------
 
 
-def run_gpu(model_path: str):
+def run_gpu(model_path: str) -> Callable[..., tuple[list[str], bool, str, float]]:
     """Return a callable(query) -> (called_tools, args_ok, final_text, latency)."""
     from agent_from_scratch import (  # type: ignore[import-not-found]
         execute_tools,
@@ -100,7 +100,7 @@ def run_gpu(model_path: str):
 
     model, tokenizer = load_model(model_path)
 
-    def run(query: str):
+    def run(query: str) -> tuple[list[str], bool, str, float]:
         t0 = time.time()
         messages = [
             {"role": "system", "content": SYSTEM_PROMPT},
@@ -133,15 +133,15 @@ def run_gpu(model_path: str):
     return run
 
 
-def run_mock():
+def run_mock() -> Callable[..., tuple[list[str], bool, str, float]]:
     """Deterministic stub: maps query keywords to expected tool calls.
 
     Lets us exercise the full pipeline in CI without GPU/API. Doesn't measure
     real model quality — just validates the harness end-to-end.
     """
-    from tools import TOOL_REGISTRY  # noqa: F401  (kept so import errors surface)
+    from finagent.tools import TOOL_REGISTRY  # noqa: F401  (kept so import errors surface)
 
-    def run(query: str):
+    def run(query: str) -> tuple[list[str], bool, str, float]:
         t0 = time.time()
         q = query.lower()
         called: list[str] = []
@@ -253,7 +253,13 @@ def aggregate(preds: list[Prediction]) -> Metrics:
     )
 
 
-def write_report(metrics: Metrics, preds: list[Prediction], path: Path, model_id: str, mode: str):
+def write_report(
+    metrics: Metrics,
+    preds: list[Prediction],
+    path: Path,
+    model_id: str,
+    mode: str,
+) -> None:
     by_cat: dict[str, list[Prediction]] = {}
     for p in preds:
         by_cat.setdefault(p.category, []).append(p)
@@ -309,7 +315,7 @@ def write_report(metrics: Metrics, preds: list[Prediction], path: Path, model_id
     path.write_text("\n".join(lines))
 
 
-def main():
+def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", choices=["gpu", "mock"], default="mock")
     ap.add_argument("--model", default="danab17/finagent-7b-merged")

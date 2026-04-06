@@ -18,21 +18,14 @@ manually in react_loop(). The agent logic is the same — only the orchestration
 
 import json
 import operator
-import sys
-from pathlib import Path
-from typing import Annotated, TypedDict
+from typing import Annotated, Any, Callable, TypedDict
 
 import torch
 from langgraph.graph import END, StateGraph
 from unsloth import FastLanguageModel
 
-# Add project root to path
-sys.path.insert(0, str(Path(__file__).parent.parent))
-sys.path.insert(0, str(Path(__file__).parent))
-
-from tools import TOOL_REGISTRY
-
 from configs.prompt_templates import SYSTEM_PROMPT
+from finagent.tools import TOOL_REGISTRY
 
 model_device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -53,7 +46,7 @@ class AgentState(TypedDict):
 # STEP 2: load_model (same as from_scratch)
 # =====================================================================
 
-def load_model(path: str):
+def load_model(path: str) -> tuple[Any, Any]:
     model, tokenizer = FastLanguageModel.from_pretrained(
         model_name=path,
         max_seq_length=4096,
@@ -68,7 +61,7 @@ def load_model(path: str):
 # STEP 3: generate — shared helper (same as from_scratch)
 # =====================================================================
 
-def generate(model, tokenizer, messages: list[dict]) -> str:
+def generate(model: Any, tokenizer: Any, messages: list[dict]) -> str:
     """Send messages to the model and return the raw response string."""
     inputs = tokenizer.apply_chat_template(
         messages, tokenize=True, add_generation_prompt=True, return_tensors="pt",
@@ -158,7 +151,7 @@ def parse_tool_calls(text: str) -> list[dict]:
 # Here: LangGraph calls this function and manages state for us.
 # =====================================================================
 
-def make_generate_node(model, tokenizer):
+def make_generate_node(model: Any, tokenizer: Any) -> Callable[[AgentState], dict]:
     """Returns a generate node function with model/tokenizer in closure."""
 
     def generate_node(state: AgentState) -> dict:
@@ -270,7 +263,7 @@ def should_continue(state: AgentState) -> str:
 #                                            → END
 # =====================================================================
 
-def build_graph(model, tokenizer):
+def build_graph(model: Any, tokenizer: Any) -> Any:
     graph = StateGraph(AgentState)
 
     # Add nodes (= the functions that do work)
@@ -297,7 +290,7 @@ def build_graph(model, tokenizer):
 # STEP 9: run_agent
 # =====================================================================
 
-def run_agent(graph, query: str) -> str:
+def run_agent(graph: Any, query: str) -> str:
     """Run the graph on a user query and return the final response."""
     initial_state = {
         "messages": [
@@ -331,7 +324,7 @@ DEFAULT_QUERY = "What is Apple's current P/E ratio?"  # set to None for interact
 # main
 # =====================================================================
 
-def main():
+def main() -> None:
     print("=" * 60)
     print("  FinAgent — LangGraph")
     print("=" * 60)

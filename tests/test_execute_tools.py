@@ -4,18 +4,15 @@ Unit tests for execute_tools() from agent_from_scratch.py
 Run: python -m pytest tests/test_execute_tools.py -v
 """
 
-import sys
-from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 # Mock unsloth before importing agent_from_scratch (not installed locally)
+import sys
 sys.modules["unsloth"] = MagicMock()
 sys.modules["torch"] = MagicMock()
 sys.modules["torch.cuda"] = MagicMock()
 
-sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
-
-from agent_from_scratch import execute_tools
+from agent_from_scratch import execute_tools  # noqa: E402
 
 
 class TestExecuteTools:

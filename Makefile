@@ -17,16 +17,17 @@ help:
 install:
 	$(PYTHON) -m pip install -r requirements.txt
 	$(PYTHON) -m pip install ruff pytest
+	$(PYTHON) -m pip install -e .
 
 test:
 	$(PYTHON) -m pytest tests/ -v
 
 lint:
-	$(PYTHON) -m ruff check scripts tests configs
+	$(PYTHON) -m ruff check scripts tests configs finagent
 
 format:
-	$(PYTHON) -m ruff format scripts tests configs
-	$(PYTHON) -m ruff check --fix scripts tests configs
+	$(PYTHON) -m ruff format scripts tests configs finagent
+	$(PYTHON) -m ruff check --fix scripts tests configs finagent
 
 agent:
 	$(PYTHON) scripts/agent_from_scratch.py

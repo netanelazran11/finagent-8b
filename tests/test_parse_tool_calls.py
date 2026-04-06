@@ -4,18 +4,15 @@ Unit tests for parse_tool_calls() from agent_from_scratch.py
 Run: python -m pytest tests/test_parse_tool_calls.py -v
 """
 
-import sys
-from pathlib import Path
 from unittest.mock import MagicMock
 
 # Mock unsloth before importing agent_from_scratch (not installed locally)
+import sys
 sys.modules["unsloth"] = MagicMock()
 sys.modules["torch"] = MagicMock()
 sys.modules["torch.cuda"] = MagicMock()
 
-sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
-
-from agent_from_scratch import parse_tool_calls
+from agent_from_scratch import parse_tool_calls  # noqa: E402
 
 
 class TestParseToolCalls:
