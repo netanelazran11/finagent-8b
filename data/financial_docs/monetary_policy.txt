@@ -1,0 +1,40 @@
+FEDERAL RESERVE MONETARY POLICY — REFERENCE DOCUMENT
+
+FEDERAL FUNDS RATE
+The federal funds rate is the interest rate at which depository institutions lend reserve balances to other depository institutions overnight. The Federal Open Market Committee (FOMC) sets a target range for this rate. As of early 2025, the target range is 4.25%–4.50%, following a series of cuts from the peak of 5.25%–5.50% reached in mid-2023.
+
+HOW RATE CHANGES PROPAGATE
+When the Fed raises rates: short-term borrowing costs rise, mortgage rates increase, corporate debt becomes more expensive, growth stocks (long-duration assets) reprice lower, the US dollar typically strengthens.
+When the Fed cuts rates: the opposite occurs — credit becomes cheaper, growth stocks benefit, yield-sensitive sectors like utilities and real estate rebound.
+
+INFLATION TARGETS
+The Fed's mandate includes price stability with an explicit 2% PCE inflation target. Headline CPI and Core CPI (excluding food and energy) are closely watched. As of January 2025, Core PCE is running at approximately 2.8%, still above target, constraining the pace of rate cuts.
+
+QUANTITATIVE TIGHTENING (QT)
+Since mid-2022, the Fed has been reducing its balance sheet (currently ~$7 trillion) by allowing Treasuries and mortgage-backed securities to mature without reinvestment. QT removes liquidity from the financial system and complements rate increases in tightening financial conditions.
+
+THE YIELD CURVE
+The yield curve plots Treasury yields across maturities (3-month, 2-year, 10-year, 30-year). A normal curve slopes upward (longer maturities yield more). An inverted curve (short rates above long rates) has historically preceded recessions by 12–18 months. The 10-year minus 3-month spread is a widely watched recession signal.
+
+FORWARD GUIDANCE
+The FOMC issues a "dot plot" at each quarterly Summary of Economic Projections, showing each member's interest rate forecast. Market participants trade heavily on dot plot shifts. The Fed funds futures market prices in expected rate changes in real time.
+
+GLOBAL CENTRAL BANKS
+The European Central Bank (ECB) targets 2% inflation for the eurozone. The Bank of England, Bank of Japan, and Bank of Canada follow similar mandates. Divergent monetary policies create carry trade opportunities and influence currency exchange rates.
+
+IMPACT ON FIXED INCOME
+Bond prices move inversely to yields. Duration measures sensitivity: a 10-year bond with duration 8 loses ~8% in value when rates rise 1%. Short-duration bonds (T-bills, 2-year notes) are less sensitive. Credit spreads (the yield premium above Treasuries) widen during recessions as default risk rises.
+
+KEY ECONOMIC INDICATORS WATCHED BY THE FED
+- Non-Farm Payrolls (NFP): monthly jobs report; >200K additions = strong economy
+- Unemployment Rate: currently ~4.0%; FOMC neutral estimate is 4.0–4.2%
+- PCE Price Index: the Fed's preferred inflation gauge
+- GDP Growth: Q4 2024 real GDP grew 2.3% annualized; above-trend growth
+- ISM Manufacturing PMI: below 50 signals contraction; currently 49.3
+
+TOOLS AVAILABLE TO THE FED
+1. Open Market Operations — buying/selling Treasuries to manage reserves
+2. Discount Rate — rate at which banks borrow directly from the Fed
+3. Interest on Reserve Balances (IORB) — the floor for overnight rates
+4. Reserve Requirements — rarely changed; currently near zero
+5. Forward Guidance — communication that shapes market expectations

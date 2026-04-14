@@ -1,4 +1,4 @@
-.PHONY: help install test lint format agent agent-langgraph eval app clean
+.PHONY: help install test lint format agent agent-langgraph eval app multi-agent build-index rag-eval clean
 
 PYTHON ?= python
 
@@ -12,6 +12,9 @@ help:
 	@echo "  agent-langgraph Run the LangGraph agent (requires GPU)"
 	@echo "  eval            Run the eval harness against the fine-tuned model"
 	@echo "  app             Launch the Gradio demo"
+	@echo "  build-index     Build Chroma RAG index from data/financial_docs/"
+	@echo "  rag-eval        Run RAGAS evaluation on the RAG pipeline"
+	@echo "  multi-agent     Run the multi-agent system (demo mode)"
 	@echo "  clean           Remove caches and pyc files"
 
 install:
@@ -40,6 +43,15 @@ eval:
 
 app:
 	$(PYTHON) scripts/app.py
+
+build-index:
+	$(PYTHON) scripts/build_index.py
+
+rag-eval:
+	$(PYTHON) scripts/rag_eval.py
+
+multi-agent:
+	$(PYTHON) scripts/multi_agent.py
 
 clean:
 	find . -type d -name __pycache__ -prune -exec rm -rf {} +

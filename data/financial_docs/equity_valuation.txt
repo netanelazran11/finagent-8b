@@ -1,0 +1,53 @@
+EQUITY VALUATION METHODS — REFERENCE DOCUMENT
+
+PRICE-TO-EARNINGS (P/E) RATIO
+The P/E ratio is the most widely used valuation multiple. Trailing P/E uses the last 12 months of actual earnings; forward P/E uses next 12 months of consensus estimates.
+- S&P 500 historical average P/E: ~16–17x
+- Current S&P 500 P/E (2025): ~21–22x, implying a premium to history
+- High P/E (>30x) can be justified for high-growth companies but implies risk
+- Low P/E (<12x) may indicate value opportunity or declining fundamentals
+
+PEG RATIO
+PEG = P/E ÷ EPS growth rate. A PEG < 1 suggests the stock may be undervalued relative to its growth. A PEG of 1 is considered fairly valued. Useful for comparing growth companies where raw P/E overstates expensiveness.
+
+PRICE-TO-BOOK (P/B) RATIO
+P/B compares market cap to book value (assets minus liabilities). Useful for financial stocks (banks, insurers) where assets are mostly liquid. A P/B < 1 suggests the market values the company below its net assets. Average bank P/B is ~1.2–1.5x. Tech companies often trade at P/B > 10x due to intangible value.
+
+PRICE-TO-SALES (P/S) RATIO
+Useful for companies without earnings (pre-profit growth companies). The S&P 500 trades at ~2.5x sales. SaaS companies often trade 5–15x revenue. P/S should be combined with gross margin analysis.
+
+EV/EBITDA
+Enterprise Value divided by EBITDA is capital-structure-neutral (useful when comparing companies with different debt levels). EV = Market Cap + Debt - Cash. A lower EV/EBITDA suggests better value relative to operating earnings.
+
+DISCOUNTED CASH FLOW (DCF)
+DCF values a company by discounting future free cash flows to present value using a discount rate (usually the WACC). Small changes in growth assumptions or discount rate have large effects on valuation — making DCF highly sensitive. Commonly used for mature businesses with predictable cash flows.
+
+WACC = Weight of Equity × Cost of Equity + Weight of Debt × Cost of Debt × (1 - Tax Rate)
+Cost of Equity is estimated using the CAPM: Re = Rf + β × (Rm - Rf)
+Where Rf is the risk-free rate (10Y Treasury), β is systematic risk, and (Rm - Rf) is the equity risk premium (~5–5.5% historically).
+
+COMPARABLE COMPANY ANALYSIS (COMPS)
+Value a company by applying median multiples from a peer group. Steps:
+1. Identify comparable companies (same sector, similar size/growth)
+2. Calculate their median P/E, EV/EBITDA, P/S
+3. Apply those multiples to the target's financial metrics
+4. Average or weight the resulting values
+
+DIVIDEND DISCOUNT MODEL (DDM)
+For dividend-paying companies: Value = D1 / (r - g)
+Where D1 is next year's dividend, r is required return, g is expected dividend growth rate. Works well for mature blue-chip companies (utilities, consumer staples).
+
+SECTOR-SPECIFIC MULTIPLES
+- Banking: Price-to-Book (P/B), Return on Equity (ROE), Net Interest Margin (NIM)
+- Real Estate (REITs): Price/FFO (Funds From Operations), Cap Rate, Dividend Yield
+- Energy: EV/EBITDA, Reserve Life Index, Free Cash Flow Yield
+- SaaS: EV/ARR (Annual Recurring Revenue), Rule of 40 (growth rate + FCF margin)
+- Biotech: Pipeline value (NPV of drug candidates), cash burn rate
+
+GROWTH VS. VALUE INVESTING
+Growth stocks: high P/E, high revenue growth, often no dividends; sensitive to interest rates (high duration)
+Value stocks: low P/E, stable earnings, often pay dividends; outperform when rates rise
+The style factor cycle often follows Fed policy: growth outperforms in low-rate environments, value in rising-rate environments.
+
+MARGIN OF SAFETY
+Coined by Benjamin Graham: buy assets at a significant discount to their intrinsic value to protect against analysis errors. Buffett typically requires a 25–50% margin of safety.

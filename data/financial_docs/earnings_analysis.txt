@@ -1,0 +1,68 @@
+EARNINGS ANALYSIS FRAMEWORK — REFERENCE DOCUMENT
+
+WHAT IS AN EARNINGS REPORT?
+Publicly traded companies report financial results quarterly (10-Q) and annually (10-K) to the SEC. These include the income statement, balance sheet, and cash flow statement. Earnings season refers to the ~3-week period after each quarter ends when most S&P 500 companies report.
+
+THE INCOME STATEMENT
+Key lines to analyze:
+- Revenue (Top Line): Total sales. Look for YoY growth, sequential growth, and guidance revision.
+- Gross Profit = Revenue - Cost of Goods Sold. Gross margin = Gross Profit / Revenue.
+- Operating Income (EBIT): After SG&A and R&D. Operating margin shows operational efficiency.
+- EBITDA: Earnings Before Interest, Taxes, Depreciation, and Amortization. Strips out capital structure effects.
+- Net Income (Bottom Line): After taxes and interest. Can be distorted by one-time charges.
+- EPS (Earnings Per Share): Net Income divided by diluted share count. Most watched number.
+
+EARNINGS BEATS AND MISSES
+Wall Street analysts publish consensus EPS and revenue estimates before results. A "beat" means actuals exceeded consensus; a "miss" means they fell short. Historically, the S&P 500 beats by ~5% EPS on average (analysts tend to be conservative). The market reaction often depends on guidance more than the actual results — stocks can fall on a beat if guidance disappoints.
+
+KEY METRICS BEYOND EPS
+- Free Cash Flow (FCF): Operating Cash Flow - Capital Expenditures. More reliable than reported EPS (harder to manipulate). FCF margin = FCF / Revenue.
+- Same-Store Sales (SSS): Retail metric comparing comparable locations. Strips out growth from new store openings.
+- Monthly Active Users (MAU), Daily Active Users (DAU): Critical for platform/tech companies.
+- Net Revenue Retention (NRR) / Dollar Retention: SaaS metric. NRR > 120% means existing customers expand faster than churn.
+- Annual Recurring Revenue (ARR) and ARR growth: SaaS primary growth metric.
+- Bookings, Billings, Backlog: Forward-looking revenue indicators.
+- Gross Merchandise Volume (GMV): For marketplace companies; total transaction value.
+
+BALANCE SHEET ANALYSIS
+- Cash and Equivalents: Runway for cash-burning companies. At current burn rate, how many quarters can the company operate?
+- Debt-to-Equity (D/E): Financial leverage. High D/E increases bankruptcy risk but can magnify returns.
+- Interest Coverage Ratio = EBIT / Interest Expense. Must be > 1 to cover debt payments. < 2x is concerning.
+- Working Capital = Current Assets - Current Liabilities. Positive working capital means short-term liquidity.
+- Book Value per Share: Net assets per share. Compare to market price for P/B ratio.
+
+CASH FLOW STATEMENT
+Three sections:
+1. Operating Cash Flow: Cash generated from core business operations. Should be positive and growing.
+2. Investing Cash Flow: Capital expenditures (CAPEX), acquisitions, asset sales. Usually negative (investment).
+3. Financing Cash Flow: Debt issuance/repayment, share buybacks, dividends.
+
+RED FLAGS IN EARNINGS
+- Revenue growing faster than cash flow (potential revenue recognition issues)
+- Increasing accounts receivable relative to revenue (customers not paying)
+- Rising inventory relative to revenue (demand slowdown)
+- Goodwill impairments (overpaid acquisitions)
+- Frequent "one-time" charges that recur every quarter
+- Stock-based compensation (SBC) that exceeds FCF (real shareholder dilution)
+- Management guidance repeatedly below actual results (throwing softballs)
+
+MANAGEMENT COMMENTARY
+The earnings call (conference call with analysts) often matters as much as the numbers. Listen for:
+- Tone on demand environment: cautious language about "macro uncertainty" can signal weakness
+- Guidance: raised, maintained, or cut? Forward EPS guidance is a key stock price driver
+- Capital allocation: buybacks (bullish on own stock), dividends, acquisitions (risky)
+- Competitive dynamics: pricing power, customer wins/losses
+
+SECTOR-SPECIFIC EARNINGS FOCUS
+- Banks: Net Interest Income (NII), Net Interest Margin (NIM), Non-Performing Loans (NPL), Loan Growth
+- Retailers: Same-Store Sales, Gross Margin, Inventory Turns
+- Energy: Realized oil/gas price, Production volumes, lifting cost per BOE
+- Healthcare: Drug trial results, FDA approvals, pipeline updates, payor mix
+- Real Estate (REITs): FFO (Funds from Operations), Occupancy Rate, Lease Renewal Spreads
+- Tech: ARR, NRR, Cloud Revenue Growth, Seat Count, Backlog
+
+ANALYST RATINGS SYSTEM
+- Buy / Overweight / Outperform: Expected to beat the market
+- Hold / Neutral / Market Perform: Expected to match the market
+- Sell / Underweight / Underperform: Expected to lag the market
+Price targets accompany ratings. Consensus price target = average of all analyst targets.

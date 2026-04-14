@@ -1,0 +1,61 @@
+PORTFOLIO RISK MANAGEMENT — REFERENCE DOCUMENT
+
+TYPES OF INVESTMENT RISK
+1. Market Risk (Systematic): Risk from broad market moves; cannot be diversified away. Measured by Beta.
+2. Idiosyncratic Risk (Unsystematic): Company-specific risk; can be diversified away with 20–30 uncorrelated holdings.
+3. Credit Risk: Risk of default; relevant for bonds and counterparties.
+4. Liquidity Risk: Inability to sell a position at a fair price; worse in small-cap stocks and alternatives.
+5. Inflation Risk: Purchasing power erosion; most severe for long-duration fixed income.
+6. Currency Risk: For international holdings, FX changes can overwhelm stock returns.
+7. Concentration Risk: Having too much exposure to one stock, sector, or geography.
+
+BETA
+Beta measures an asset's sensitivity to the market (usually the S&P 500). Beta = 1 means the stock moves with the market. Beta > 1 = more volatile (tech, growth). Beta < 1 = less volatile (utilities, consumer staples). Beta < 0 = inverse correlation (rare; some hedge instruments).
+
+STANDARD DEVIATION AND VOLATILITY
+Standard deviation of daily returns annualized = volatility. S&P 500 historical annual volatility: ~15–20%. Individual stocks often exhibit 25–50% volatility. VIX (the "fear gauge") measures implied 30-day volatility of the S&P 500 from options prices. VIX > 30 signals high fear; VIX < 15 signals complacency.
+
+VALUE AT RISK (VaR)
+VaR estimates the maximum loss at a given confidence level over a time horizon. Example: "1-day 95% VaR of $10,000" means there is a 5% chance of losing more than $10,000 in a single day. VaR has limitations: it ignores tail events beyond the confidence threshold and assumes normal distributions.
+
+SHARPE RATIO
+Sharpe = (Portfolio Return - Risk-Free Rate) / Portfolio Standard Deviation
+Measures return per unit of total risk. A Sharpe > 1 is considered good; > 2 is excellent. Useful for comparing strategies on a risk-adjusted basis.
+
+MAXIMUM DRAWDOWN
+The maximum peak-to-trough decline in portfolio value. Lower maximum drawdown means better downside protection. S&P 500 saw ~57% drawdown in 2008–2009 and ~34% in March 2020 (COVID crash).
+
+MODERN PORTFOLIO THEORY (MPT)
+Harry Markowitz's framework shows that by combining assets with imperfect correlations, you can build a portfolio with higher expected return for a given level of risk. The "efficient frontier" shows the optimal portfolios. Adding a low-correlation asset (e.g., bonds, gold, REITs) to a stock portfolio reduces volatility without proportionally reducing expected return.
+
+CORRELATION
+A correlation of +1 means assets move perfectly together; -1 means perfectly inversely; 0 means no relationship. Treasury bonds have historically had low or negative correlation to stocks, making them useful for diversification. This correlation has become less reliable in high-inflation regimes.
+
+POSITION SIZING
+Common rules:
+- Kelly Criterion: size positions to maximize long-run geometric growth
+- Fixed percentage: allocate no more than 2–5% of portfolio to any single position
+- Risk parity: allocate so each position contributes equally to total portfolio risk
+
+LEVERAGE AND MARGIN RISK
+Leverage amplifies both gains and losses. A 2x levered position on a stock that falls 50% results in a 100% loss. Margin calls can force liquidation at the worst time. Experienced advisors typically recommend avoiding leverage for retail investors, particularly in volatile assets.
+
+DANGEROUS FINANCIAL BEHAVIORS TO AVOID
+- Putting your entire savings in one stock or sector (concentration risk)
+- Using margin loans or home equity to invest in the market
+- Investing emergency fund money in volatile assets
+- Chasing past performance (recency bias)
+- Timing the market (studies show market timing destroys returns)
+- Not having 3–6 months of expenses in liquid cash before investing
+
+HEDGING STRATEGIES
+- Put options: pay premium for the right to sell at a fixed price (floor protection)
+- Covered calls: sell calls against existing holdings to generate income (caps upside)
+- Portfolio insurance: systematic options strategies that pay off in crashes
+- Inverse ETFs: move opposite to an index; suitable only for short-term hedges
+
+ASSET ALLOCATION FRAMEWORKS
+- 60/40 Portfolio: 60% stocks, 40% bonds; historically generated ~8% annual return with moderate volatility
+- Risk Parity: equal risk contribution from each asset class
+- Endowment Model (Yale): heavy alternatives (PE, VC, real assets) for long-horizon investors
+- Lifecycle/Target-Date: gradually shift from growth to income as retirement approaches
