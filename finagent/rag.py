@@ -44,7 +44,7 @@ try:
     from langchain_chroma import Chroma  # noqa: F401
     from langchain_community.document_loaders import DirectoryLoader, TextLoader  # noqa: F401
     from langchain_huggingface import HuggingFaceEmbeddings  # noqa: F401
-    from langchain.text_splitter import RecursiveCharacterTextSplitter  # noqa: F401
+    from langchain_text_splitters import RecursiveCharacterTextSplitter  # noqa: F401
 except ImportError:
     Chroma = None  # type: ignore[assignment,misc]
     HuggingFaceEmbeddings = None  # type: ignore[assignment,misc]
