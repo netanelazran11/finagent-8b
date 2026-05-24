@@ -5,7 +5,7 @@ End-to-end project: I generated a synthetic dataset, QLoRA-fine-tuned **Mistral 
 > **Why this matters**: a 7B model fine-tuned on the right data can match much larger generalist models on a focused domain. This repo shows the full GenAI loop — data, training, agents, RAG, eval — without hand-waving any step.
 
 [![CI](https://github.com/netanelazran11/finagent-8b/actions/workflows/ci.yml/badge.svg)](https://github.com/netanelazran11/finagent-8b/actions/workflows/ci.yml)
-[![Model on HF](https://img.shields.io/badge/🤗_model-danab17/finagent--7b--merged-yellow)](https://huggingface.co/danab17/finagent-7b-merged)
+[![Model on HF](https://img.shields.io/badge/🤗_model-finagent--7b--merged-yellow)](https://huggingface.co/models)
 
 ---
 
@@ -151,7 +151,7 @@ python scripts/multi_agent.py --query "What is Apple's P/E ratio?" --verbose
 python scripts/multi_agent.py --interactive --use-rag
 
 # Full stack: real model + RAG
-python scripts/multi_agent.py --model danab17/finagent-7b-merged --use-rag
+python scripts/multi_agent.py --model finagent-7b-merged --use-rag
 ```
 
 #### GuardAgent (rule-based, no LLM)
