@@ -9,6 +9,10 @@ End-to-end project: I generated a synthetic dataset, QLoRA-fine-tuned **Mistral 
 
 ---
 
+![FinAgent Architecture](assets/architecture.png)
+
+---
+
 ## Architecture
 
 ```
