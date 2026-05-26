@@ -78,10 +78,10 @@ DEFAULTS = dict(
     merged_path="finagent-7b-merged",     # Merged full model (~5 GB in float16)
 
     # HuggingFace Hub
-    hf_username="DanAbergel",
+    hf_username="netanelazran11",
 
     # Data source
-    data_url="https://raw.githubusercontent.com/DanAbergel/finagent-8b/main/data/processed",
+    data_url="https://raw.githubusercontent.com/netanelazran11/finagent-8b/main/data/processed",
 )
 
 DATA_FILES = ["train.jsonl", "val.jsonl"]

@@ -12,11 +12,11 @@
 #   scancel <JOB_ID>                     # cancel if needed
 #
 # FIRST TIME SETUP (run once on the login node BEFORE sbatch):
-#   cd /sci/labs/arieljaffe/dan.abergel1
-#   git clone https://github.com/DanAbergel/finagent-8b.git
+#   cd /your/lab/dir
+#   git clone https://github.com/netanelazran11/finagent-8b.git
 #   cd finagent-8b
-#   python3 -m venv /sci/labs/arieljaffe/dan.abergel1/finagent_env
-#   source /sci/labs/arieljaffe/dan.abergel1/finagent_env/bin/activate
+#   python3 -m venv /your/lab/dir/finagent_env
+#   source /your/lab/dir/finagent_env/bin/activate
 #   pip install unsloth
 #   pip install --force-reinstall huggingface_hub==0.34.0
 #   pip install wandb
@@ -35,7 +35,7 @@
 set -euo pipefail
 
 # ── Paths (adapt to your cluster) ──────────────────────────────────
-LAB_DIR="/sci/labs/arieljaffe/dan.abergel1"
+LAB_DIR="/sci/labs/benjamin.yakir/netanel.azran"
 PROJECT_DIR="$LAB_DIR/repos/finagent-8b"
 VENV_DIR="$LAB_DIR/torch_env"
 
